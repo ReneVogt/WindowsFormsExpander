@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsExpander", "WindowsFormsExpander\WindowsFormsExpander.csproj", "{DDB29AF4-B85D-42A2-80B3-39A91E0322CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpanderTestApp", "ExpanderTestApp\ExpanderTestApp.csproj", "{26EAA18C-9414-420D-99F7-27697E7D9060}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDB29AF4-B85D-42A2-80B3-39A91E0322CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB29AF4-B85D-42A2-80B3-39A91E0322CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB29AF4-B85D-42A2-80B3-39A91E0322CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB29AF4-B85D-42A2-80B3-39A91E0322CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26EAA18C-9414-420D-99F7-27697E7D9060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26EAA18C-9414-420D-99F7-27697E7D9060}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26EAA18C-9414-420D-99F7-27697E7D9060}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26EAA18C-9414-420D-99F7-27697E7D9060}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2A44776-9149-44D4-B1A4-0B667E9ED476}
+	EndGlobalSection
+EndGlobal
