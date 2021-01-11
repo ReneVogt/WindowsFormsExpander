@@ -1,18 +1,21 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using System;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
 [assembly: AssemblyTitle("WindowsFormsExpander")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("An Expander control for Windows Forms.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("René Vogt")]
 [assembly: AssemblyProduct("WindowsFormsExpander")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright ©2021 by René Vogt")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("en")]
+[assembly: CLSCompliant(true)]
 
 // Durch Festlegen von ComVisible auf FALSE werden die Typen in dieser Assembly
 // für COM-Komponenten unsichtbar.  Wenn Sie auf einen Typ in dieser Assembly von
@@ -32,5 +35,4 @@ using System.Runtime.InteropServices;
 // Sie können alle Werte angeben oder Standardwerte für die Build- und Revisionsnummern verwenden,
 // indem Sie "*" wie unten gezeigt eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.*")]
