@@ -4,5 +4,86 @@
         <name>WindowsFormsExpander</name>
     </assembly>
     <members>
+        <member name="T:WindowsFormsExpander.Expander">
+            <summary>
+            A container control that can be collapsed and expanded.
+            </summary>
+        </member>
+        <member name="E:WindowsFormsExpander.Expander.ExpandedChanged">
+            <summary>
+            Raised when <see cref="P:WindowsFormsExpander.Expander.Expanded"/> has been changed.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.Expanded">
+            <summary>
+            Gets or sets a value indicating if this <see cref="T:WindowsFormsExpander.Expander"/> is currently
+            expanded or collapsed.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.#ctor">
+            <summary>
+            Creates a new <see cref="T:WindowsFormsExpander.Expander"/> control.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.Dispose(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnExpandedChanged(System.EventArgs)">
+            <summary>
+            Called when <see cref="P:WindowsFormsExpander.Expander.Expanded"/> has been changed.
+            Raises the <see cref="E:WindowsFormsExpander.Expander.ExpandedChanged"/> event.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:WindowsFormsExpander.Expander.components">
+            <summary>
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.InitializeComponent">
+            <summary>
+            Erforderliche Methode für die Designerunterstützung. 
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+        <member name="T:WindowsFormsExpander.Properties.Resources">
+            <summary>
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.ResourceManager">
+            <summary>
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Culture">
+            <summary>
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.collapseImage">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_Expanded">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Gets or sets a value indicating if this Expander is currently expanded or collapsed. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_ExpandedChanged">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Raised when the Expanded property has been changed. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.expandImage">
+            <summary>
+              Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+            </summary>
+        </member>
     </members>
 </doc>

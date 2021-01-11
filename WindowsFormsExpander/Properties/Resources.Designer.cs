@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ExpanderTestApp.Properties {
+namespace WindowsFormsExpander.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace ExpanderTestApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ExpanderTestApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WindowsFormsExpander.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,44 @@ namespace ExpanderTestApp.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap collapseImage {
+            get {
+                object obj = ResourceManager.GetObject("collapseImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gets or sets a value indicating if this Expander is currently expanded or collapsed. ähnelt.
+        /// </summary>
+        internal static string Description_Expanded {
+            get {
+                return ResourceManager.GetString("Description_Expanded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Raised when the Expanded property has been changed. ähnelt.
+        /// </summary>
+        internal static string Description_ExpandedChanged {
+            get {
+                return ResourceManager.GetString("Description_ExpandedChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap expandImage {
+            get {
+                object obj = ResourceManager.GetObject("expandImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
