@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
 using WindowsFormsExpander.Properties;
@@ -12,12 +14,39 @@ namespace WindowsFormsExpander
     /// <summary>
     /// A container control that can be collapsed and expanded.
     /// </summary>
-    [DefaultProperty(nameof(Text))]
-    [DefaultEvent(nameof(ExpandedChanged))]
-    public partial class Expander : GroupBox
+    [
+        ComVisible(true),
+        ClassInterface(ClassInterfaceType.AutoDispatch),
+        DefaultProperty(nameof(Text)),
+        DefaultEvent(nameof(ExpandedChanged)),
+        ExpanderDescription("Description_Expander")
+    ]
+    public class Expander : Control
     {
+        #region Constants
+        static readonly ControlStyles enabledStyles =
+            ControlStyles.AllPaintingInWmPaint |
+            ControlStyles.ContainerControl |
+            ControlStyles.DoubleBuffer |
+            ControlStyles.ResizeRedraw |
+            ControlStyles.Selectable |
+            ControlStyles.StandardClick |
+            ControlStyles.StandardDoubleClick |
+            ControlStyles.SupportsTransparentBackColor |
+            ControlStyles.UserPaint;
+        static readonly ControlStyles disabledStyles =
+            ControlStyles.CacheText | 
+            ControlStyles.EnableNotifyMessage |
+            ControlStyles.FixedHeight |
+            ControlStyles.FixedWidth |
+            ControlStyles.Opaque |
+            ControlStyles.OptimizedDoubleBuffer |
+            ControlStyles.UseTextForAccessibility |
+            ControlStyles.UserMouse;
+        #endregion
         #region Fields
         bool expanded = true;
+        Rectangle buttonRectangle;
         #endregion
         #region Events
         /// <summary>
@@ -51,25 +80,43 @@ namespace WindowsFormsExpander
         /// </summary>
         public Expander()
         {
-            InitializeComponent();
-        }
-        /// <inheritdoc />
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                components?.Dispose();
-            }
-            base.Dispose(disposing);
+            SetStyle(enabledStyles,true);
+            SetStyle(disabledStyles, false);
+            TabStop = true;
         }
         #endregion
-        #region Event handlers
+        #region Overridden methos
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
-            pe.Graphics.DrawImage(Expanded ? Resources.collapseImage : Resources.expandImage, new Point(Width - 16 - Padding.Right, 0));
+
+            pe.Graphics.DrawImage(Expanded ? Resources.collapseImage : Resources.expandImage, buttonRectangle.Location);
+            Debug.WriteLine($"ONPAINT: {Focused}");
+            if (Focused)
+                ControlPaint.DrawFocusRectangle(pe.Graphics, buttonRectangle);
         }
+        /// <inheritdoc />
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            buttonRectangle = new Rectangle(Width - 16, 0, 16, 16);
+        }
+        /// <inheritdoc />
+        protected override void OnGotFocus(EventArgs e)
+        {
+            base.OnGotFocus(e);
+            Invalidate(buttonRectangle);
+            Debug.WriteLine($"GOT FOCUS ({Name}): {Controls.Count}");
+        }
+        /// <inheritdoc />
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            Invalidate(buttonRectangle);
+        }
+        #endregion
+        #region New event handlers
         /// <summary>
         /// Called when <see cref="Expanded"/> has been changed.
         /// Raises the <see cref="ExpandedChanged"/> event.

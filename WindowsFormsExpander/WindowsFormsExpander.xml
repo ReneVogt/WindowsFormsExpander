@@ -25,10 +25,16 @@
             Creates a new <see cref="T:WindowsFormsExpander.Expander"/> control.
             </summary>
         </member>
-        <member name="M:WindowsFormsExpander.Expander.Dispose(System.Boolean)">
+        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
             <inheritdoc />
         </member>
-        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
+        <member name="M:WindowsFormsExpander.Expander.OnSizeChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnGotFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
             <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.Expander.OnExpandedChanged(System.EventArgs)">
@@ -37,17 +43,6 @@
             Raises the <see cref="E:WindowsFormsExpander.Expander.ExpandedChanged"/> event.
             </summary>
             <param name="e"></param>
-        </member>
-        <member name="F:WindowsFormsExpander.Expander.components">
-            <summary>
-            Erforderliche Designervariable.
-            </summary>
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.InitializeComponent">
-            <summary>
-            Erforderliche Methode für die Designerunterstützung. 
-            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
-            </summary>
         </member>
         <member name="T:WindowsFormsExpander.Properties.Resources">
             <summary>
@@ -78,6 +73,11 @@
         <member name="P:WindowsFormsExpander.Properties.Resources.Description_ExpandedChanged">
             <summary>
               Sucht eine lokalisierte Zeichenfolge, die Raised when the Expanded property has been changed. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_Expander">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die A container control that can be collapsed and expanded. ähnelt.
             </summary>
         </member>
         <member name="P:WindowsFormsExpander.Properties.Resources.expandImage">

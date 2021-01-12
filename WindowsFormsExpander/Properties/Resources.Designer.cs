@@ -89,6 +89,15 @@ namespace WindowsFormsExpander.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A container control that can be collapsed and expanded. ähnelt.
+        /// </summary>
+        internal static string Description_Expander {
+            get {
+                return ResourceManager.GetString("Description_Expander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap expandImage {

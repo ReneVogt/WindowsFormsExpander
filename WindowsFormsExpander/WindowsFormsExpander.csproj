@@ -61,9 +61,6 @@
     <Compile Include="Expander.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Expander.Designer.cs">
-      <DependentUpon>Expander.cs</DependentUpon>
-    </Compile>
     <Compile Include="LocalizedAttributes\ExpanderDescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
