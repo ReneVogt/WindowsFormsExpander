@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace ExpanderTestApp
 {
@@ -7,16 +8,14 @@ namespace ExpanderTestApp
         public TestForm()
         {
             InitializeComponent();
-        }
+            lowerExpander.GotFocus += OnExpanderFocused;
+            upperExpander.GotFocus += OnExpanderFocused;
 
-        private void btUpperRefresh_Click(object sender, System.EventArgs e)
-        {
-            pgUpper.Refresh();
-        }
 
-        private void btLowerRefresh_Click(object sender, System.EventArgs e)
+        }
+        void OnExpanderFocused(object sender, EventArgs e)
         {
-            pgLower.Refresh();
+            propertyGrid.SelectedObject = sender;
         }
     }
 }

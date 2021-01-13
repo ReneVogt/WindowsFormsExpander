@@ -127,6 +127,12 @@
   <data name="Description_ExpandedChanged" xml:space="preserve">
     <value>Raised when the Expanded property has been changed.</value>
   </data>
+  <data name="Description_ExpandedHeight" xml:space="preserve">
+    <value>Gets or sets the height the Expander should have when it is expanded.</value>
+  </data>
+  <data name="Description_ExpandedHeightChanged" xml:space="preserve">
+    <value>Raised when the ExpandedHeight property has been changed.</value>
+  </data>
   <data name="Description_Expander" xml:space="preserve">
     <value>A container control that can be collapsed and expanded.</value>
   </data>

@@ -14,10 +14,21 @@
             Raised when <see cref="P:WindowsFormsExpander.Expander.Expanded"/> has been changed.
             </summary>
         </member>
+        <member name="E:WindowsFormsExpander.Expander.ExpandedHeightChanged">
+            <summary>
+            Raised when <see cref="P:WindowsFormsExpander.Expander.ExpandedHeight"/> has been changed.
+            </summary>
+        </member>
         <member name="P:WindowsFormsExpander.Expander.Expanded">
             <summary>
             Gets or sets a value indicating if this <see cref="T:WindowsFormsExpander.Expander"/> is currently
             expanded or collapsed.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.ExpandedHeight">
+            <summary>
+            Gets or sets the height the <see cref="T:WindowsFormsExpander.Expander"/>
+            should have when it is expanded.
             </summary>
         </member>
         <member name="M:WindowsFormsExpander.Expander.#ctor">
@@ -37,10 +48,29 @@
         <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
             <inheritdoc />
         </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
         <member name="M:WindowsFormsExpander.Expander.OnExpandedChanged(System.EventArgs)">
             <summary>
             Called when <see cref="P:WindowsFormsExpander.Expander.Expanded"/> has been changed.
             Raises the <see cref="E:WindowsFormsExpander.Expander.ExpandedChanged"/> event.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnExpandedHeightChanged(System.EventArgs)">
+            <summary>
+            Called when <see cref="P:WindowsFormsExpander.Expander.ExpandedHeight"/> has been changed.
+            Raises the <see cref="E:WindowsFormsExpander.Expander.ExpandedHeightChanged"/> event.
             </summary>
             <param name="e"></param>
         </member>
@@ -73,6 +103,16 @@
         <member name="P:WindowsFormsExpander.Properties.Resources.Description_ExpandedChanged">
             <summary>
               Sucht eine lokalisierte Zeichenfolge, die Raised when the Expanded property has been changed. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_ExpandedHeight">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Gets or sets the height the Expander should have when it is expanded. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_ExpandedHeightChanged">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Raised when the ExpandedHeight property has been changed. ähnelt.
             </summary>
         </member>
         <member name="P:WindowsFormsExpander.Properties.Resources.Description_Expander">

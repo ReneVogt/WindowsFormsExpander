@@ -89,6 +89,24 @@ namespace WindowsFormsExpander.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gets or sets the height the Expander should have when it is expanded. ähnelt.
+        /// </summary>
+        internal static string Description_ExpandedHeight {
+            get {
+                return ResourceManager.GetString("Description_ExpandedHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Raised when the ExpandedHeight property has been changed. ähnelt.
+        /// </summary>
+        internal static string Description_ExpandedHeightChanged {
+            get {
+                return ResourceManager.GetString("Description_ExpandedHeightChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die A container control that can be collapsed and expanded. ähnelt.
         /// </summary>
         internal static string Description_Expander {
