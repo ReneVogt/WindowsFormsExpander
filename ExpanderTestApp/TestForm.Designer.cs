@@ -38,7 +38,6 @@ namespace ExpanderTestApp
             this.outerSplitter.Panel1.SuspendLayout();
             this.outerSplitter.Panel2.SuspendLayout();
             this.outerSplitter.SuspendLayout();
-            this.upperExpander.SuspendLayout();
             this.SuspendLayout();
             // 
             // outerSplitter
@@ -53,6 +52,7 @@ namespace ExpanderTestApp
             // 
             // outerSplitter.Panel2
             // 
+            this.outerSplitter.Panel2.Controls.Add(this.button1);
             this.outerSplitter.Panel2.Controls.Add(this.lowerExpander);
             this.outerSplitter.Panel2.Controls.Add(this.upperExpander);
             this.outerSplitter.Panel2.Padding = new System.Windows.Forms.Padding(5);
@@ -80,8 +80,6 @@ namespace ExpanderTestApp
             // 
             // upperExpander
             // 
-            this.upperExpander.AutoScroll = true;
-            this.upperExpander.Controls.Add(this.button1);
             this.upperExpander.Dock = System.Windows.Forms.DockStyle.Top;
             this.upperExpander.ExpandedHeight = 168;
             this.upperExpander.Location = new System.Drawing.Point(5, 5);
@@ -92,7 +90,7 @@ namespace ExpanderTestApp
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(44, 101);
+            this.button1.Location = new System.Drawing.Point(53, 238);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(188, 146);
             this.button1.TabIndex = 0;
@@ -113,7 +111,6 @@ namespace ExpanderTestApp
             this.outerSplitter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).EndInit();
             this.outerSplitter.ResumeLayout(false);
-            this.upperExpander.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
-using WindowsFormsExpander.Properties;
 
 #nullable enable
 
@@ -22,7 +20,7 @@ namespace WindowsFormsExpander
         DefaultEvent(nameof(ExpandedChanged)),
         ExpanderDescription("Description_Expander")
     ]
-    public class Expander : ContainerControl
+    public class Expander : Control
     {
         #region Types
         enum AnimationMode
@@ -62,14 +60,17 @@ namespace WindowsFormsExpander
         int expandedHeight;
         #endregion
         #region Private properties
-        int HeaderHeight => 34;
-        int AnimationSpeed => 30;
+        int HeaderHeight => Font.Height * 3;
+        int AnimationSpeed => ExpandedHeight / 5;
+        static int FocusPadding => 2;
+        static int ButtonPadding => 5;
+        static int ImagePadding => 10;
         Rectangle BorderRect => new(Padding.Left, Padding.Top + HeaderHeight, Width - Padding.Horizontal, Height - Padding.Vertical - HeaderHeight);
         Rectangle HeaderRect => new(Padding.Left, Padding.Top, Width - Padding.Horizontal, HeaderHeight);
-        Rectangle FocusRect => new (Padding.Left + 2, Padding.Top + 2, 28, 28);
-        Rectangle ButtonRect => new(Padding.Left + 5, Padding.Top + 5, 24, 24);
-        Rectangle ImageRect => new(Padding.Left + 8, Padding.Top + 8, 16, 16);
-        Image ButtonImage => Expanded ? Resources.collapseImage : Resources.expandImage;
+        Rectangle FocusRect => new(Padding.Left + FocusPadding, Padding.Top + FocusPadding, HeaderHeight - 2 * FocusPadding, HeaderHeight - 2 * FocusPadding);
+        Rectangle ButtonRect => new(Padding.Left + ButtonPadding, Padding.Top + ButtonPadding, HeaderHeight - 2 * ButtonPadding, HeaderHeight - 2 * ButtonPadding);
+        Rectangle ImageRect => new(Padding.Left + ImagePadding -  1, Padding.Top + ImagePadding - 1, HeaderHeight - 2 * ImagePadding, HeaderHeight - 2 * ImagePadding);
+        static int ImagePenWidth => 2;
         ButtonState ButtonState => Enabled
                                        ? collapseButtonPressed
                                              ? ButtonState.Pushed
@@ -154,8 +155,6 @@ namespace WindowsFormsExpander
         {
             base.OnPaint(pe);
 
-            Debug.WriteLine($"ONPAINT: Focused: {Focused}");
-
             if (Expanded && pe.ClipRectangle.IntersectsWith(BorderRect))
                 ControlPaint.DrawBorder3D(pe.Graphics, BorderRect, Border3DStyle.Etched);
             
@@ -164,10 +163,13 @@ namespace WindowsFormsExpander
             ControlPaint.DrawBorder3D(pe.Graphics, HeaderRect, Border3DStyle.Raised);
 
             ControlPaint.DrawButton(pe.Graphics, ButtonRect, ButtonState);
-            if (Enabled)
-                pe.Graphics.DrawImageUnscaled(ButtonImage, ImageRect);
-            else
-                ControlPaint.DrawImageDisabled(pe.Graphics, ButtonImage, ImageRect.Left, ImageRect.Top, BackColor);
+            using var imageBrush = new SolidBrush(Enabled ? Color.Black : Color.Gray);
+            using var imagePen = new Pen(imageBrush, ImagePenWidth);
+            var imageRect = ImageRect;
+            pe.Graphics.DrawEllipse(imagePen, imageRect);
+            pe.Graphics.FillRectangle(imageBrush, imageRect.Left + 3, imageRect.Top + imageRect.Height / 2, imageRect.Width - 6, ImagePenWidth);
+            if (!Expanded)
+                pe.Graphics.FillRectangle(imageBrush, imageRect.Left + imageRect.Width / 2, imageRect.Top + 3, ImagePenWidth, imageRect.Height - 6);
 
             using var format = new StringFormat
             {
@@ -241,7 +243,7 @@ namespace WindowsFormsExpander
         protected override void OnMouseClick(MouseEventArgs e)
         {
             base.OnMouseClick(e);
-            if (ButtonRect.Contains(e.Location))
+            if (ButtonRect.Contains(e.Location) && e.Button == MouseButtons.Left)
                 Expanded = !Expanded;
         }
         #endregion
