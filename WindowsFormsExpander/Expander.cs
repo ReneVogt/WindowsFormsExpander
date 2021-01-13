@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
@@ -61,14 +62,23 @@ namespace WindowsFormsExpander
         int expandedHeight;
         #endregion
         #region Private properties
-        int HeaderHeight => 27;
+        int HeaderHeight => 34;
         int AnimationSpeed => 30;
-        Rectangle BorderRect => new(Padding.Left, Padding.Top, Width - Padding.Horizontal, Height - Padding.Vertical);
+        Rectangle BorderRect => new(Padding.Left, Padding.Top + HeaderHeight, Width - Padding.Horizontal, Height - Padding.Vertical - HeaderHeight);
         Rectangle HeaderRect => new(Padding.Left, Padding.Top, Width - Padding.Horizontal, HeaderHeight);
-        Rectangle FocusRect => new (Padding.Left + 2, Padding.Top + 2, 26, 26);
-        Rectangle ButtonRect => new(Padding.Left + 4, Padding.Top + 4, 24, 24);
+        Rectangle FocusRect => new (Padding.Left + 2, Padding.Top + 2, 28, 28);
+        Rectangle ButtonRect => new(Padding.Left + 5, Padding.Top + 5, 24, 24);
         Rectangle ImageRect => new(Padding.Left + 8, Padding.Top + 8, 16, 16);
         Image ButtonImage => Expanded ? Resources.collapseImage : Resources.expandImage;
+        ButtonState ButtonState => Enabled
+                                       ? collapseButtonPressed
+                                             ? ButtonState.Pushed
+                                             : ButtonState.Normal
+                                       : ButtonState.Inactive;
+        Rectangle TextRect => new(Padding.Left + HeaderHeight + 3,
+                                  Padding.Top + (HeaderHeight - Font.Height) / 2,
+                                  Width - Padding.Horizontal - HeaderHeight - 6,
+                                  Font.Height);
         #endregion
         #region Events
         /// <summary>
@@ -146,24 +156,33 @@ namespace WindowsFormsExpander
 
             Debug.WriteLine($"ONPAINT: Focused: {Focused}");
 
-            if (Expanded)
+            if (Expanded && pe.ClipRectangle.IntersectsWith(BorderRect))
                 ControlPaint.DrawBorder3D(pe.Graphics, BorderRect, Border3DStyle.Etched);
-                //ControlPaint.DrawBorder(pe.Graphics, BorderRect, SystemColors.ActiveBorder, ButtonBorderStyle.Solid);
+            
+            if (!pe.ClipRectangle.IntersectsWith(HeaderRect)) return;
 
-            ControlPaint.DrawBorder(pe.Graphics, HeaderRect, SystemColors.ActiveBorder, ButtonBorderStyle.Solid);
+            ControlPaint.DrawBorder3D(pe.Graphics, HeaderRect, Border3DStyle.Raised);
+
+            ControlPaint.DrawButton(pe.Graphics, ButtonRect, ButtonState);
+            if (Enabled)
+                pe.Graphics.DrawImageUnscaled(ButtonImage, ImageRect);
+            else
+                ControlPaint.DrawImageDisabled(pe.Graphics, ButtonImage, ImageRect.Left, ImageRect.Top, BackColor);
+
+            using var format = new StringFormat
+            {
+                HotkeyPrefix = ShowKeyboardCues ? HotkeyPrefix.Show : HotkeyPrefix.Hide
+            };
+            if (RightToLeft == RightToLeft.Yes)
+                format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
 
             if (Enabled)
             {
-                ControlPaint.DrawButton(pe.Graphics, ButtonRect, collapseButtonPressed
-                                                                     ? ButtonState.Pushed
-                                                                     : ButtonState.Normal);
-                pe.Graphics.DrawImageUnscaled(ButtonImage, ImageRect);
+                using var textBrush = new SolidBrush(ForeColor);
+                pe.Graphics.DrawString(Text, Font, textBrush, TextRect);
             }
             else
-            {
-                ControlPaint.DrawButton(pe.Graphics, ButtonRect, ButtonState.Inactive);
-                ControlPaint.DrawImageDisabled(pe.Graphics, ButtonImage, ImageRect.Left, ImageRect.Top, BackColor);
-            }
+                ControlPaint.DrawStringDisabled(pe.Graphics, Text, Font, BackColor, TextRect, format);
 
             if (Focused)
                 ControlPaint.DrawFocusRectangle(pe.Graphics, FocusRect);

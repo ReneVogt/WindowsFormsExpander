@@ -30,13 +30,15 @@ namespace ExpanderTestApp
         private void InitializeComponent()
         {
             this.outerSplitter = new System.Windows.Forms.SplitContainer();
-            this.upperExpander = new WindowsFormsExpander.Expander();
-            this.lowerExpander = new WindowsFormsExpander.Expander();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
+            this.lowerExpander = new WindowsFormsExpander.Expander();
+            this.upperExpander = new WindowsFormsExpander.Expander();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).BeginInit();
             this.outerSplitter.Panel1.SuspendLayout();
             this.outerSplitter.Panel2.SuspendLayout();
             this.outerSplitter.SuspendLayout();
+            this.upperExpander.SuspendLayout();
             this.SuspendLayout();
             // 
             // outerSplitter
@@ -58,15 +60,13 @@ namespace ExpanderTestApp
             this.outerSplitter.SplitterDistance = 221;
             this.outerSplitter.TabIndex = 0;
             // 
-            // upperExpander
+            // propertyGrid
             // 
-            this.upperExpander.Dock = System.Windows.Forms.DockStyle.Top;
-            this.upperExpander.ExpandedHeight = 168;
-            this.upperExpander.Location = new System.Drawing.Point(5, 5);
-            this.upperExpander.Name = "upperExpander";
-            this.upperExpander.Size = new System.Drawing.Size(293, 168);
-            this.upperExpander.TabIndex = 0;
-            this.upperExpander.Text = "Upper expander";
+            this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid.Location = new System.Drawing.Point(0, 0);
+            this.propertyGrid.Name = "propertyGrid";
+            this.propertyGrid.Size = new System.Drawing.Size(221, 413);
+            this.propertyGrid.TabIndex = 0;
             // 
             // lowerExpander
             // 
@@ -78,13 +78,26 @@ namespace ExpanderTestApp
             this.lowerExpander.TabIndex = 1;
             this.lowerExpander.Text = "Lower expander";
             // 
-            // propertyGrid
+            // upperExpander
             // 
-            this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.propertyGrid.Location = new System.Drawing.Point(0, 0);
-            this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(221, 413);
-            this.propertyGrid.TabIndex = 0;
+            this.upperExpander.AutoScroll = true;
+            this.upperExpander.Controls.Add(this.button1);
+            this.upperExpander.Dock = System.Windows.Forms.DockStyle.Top;
+            this.upperExpander.ExpandedHeight = 168;
+            this.upperExpander.Location = new System.Drawing.Point(5, 5);
+            this.upperExpander.Name = "upperExpander";
+            this.upperExpander.Size = new System.Drawing.Size(293, 168);
+            this.upperExpander.TabIndex = 0;
+            this.upperExpander.Text = "Upper expander";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(44, 101);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 146);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // TestForm
             // 
@@ -100,6 +113,7 @@ namespace ExpanderTestApp
             this.outerSplitter.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).EndInit();
             this.outerSplitter.ResumeLayout(false);
+            this.upperExpander.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -110,6 +124,7 @@ namespace ExpanderTestApp
         private WindowsFormsExpander.Expander upperExpander;
         private WindowsFormsExpander.Expander lowerExpander;
         private System.Windows.Forms.PropertyGrid propertyGrid;
+        private System.Windows.Forms.Button button1;
     }
 }
 
