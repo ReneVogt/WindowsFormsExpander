@@ -19,6 +19,11 @@
             Raised when <see cref="P:WindowsFormsExpander.Expander.ExpandedHeight"/> has been changed.
             </summary>
         </member>
+        <member name="E:WindowsFormsExpander.Expander.HeaderHeightChanged">
+            <summary>
+            Raised when <see cref="P:WindowsFormsExpander.Expander.HeaderHeight"/> has been changed.
+            </summary>
+        </member>
         <member name="P:WindowsFormsExpander.Expander.Expanded">
             <summary>
             Gets or sets a value indicating if this <see cref="T:WindowsFormsExpander.Expander"/> is currently
@@ -29,6 +34,11 @@
             <summary>
             Gets or sets the height the <see cref="T:WindowsFormsExpander.Expander"/>
             should have when it is expanded.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.HeaderHeight">
+            <summary>
+            Gets or sets the height of the <see cref="T:WindowsFormsExpander.Expander"/>'s header button.
             </summary>
         </member>
         <member name="M:WindowsFormsExpander.Expander.#ctor">
@@ -74,6 +84,16 @@
             </summary>
             <param name="e"></param>
         </member>
+        <member name="M:WindowsFormsExpander.Expander.OnHeaderHeightChanged(System.EventArgs)">
+            <summary>
+            Called when <see cref="P:WindowsFormsExpander.Expander.HeaderHeight"/> has been changed.
+            Raises the <see cref="E:WindowsFormsExpander.Expander.HeaderHeightChanged"/> event.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:WindowsFormsExpander.LocalizedAttributes.ExpanderCategory.GetLocalizedString(System.String)">
+            <inheritdoc />
+        </member>
         <member name="T:WindowsFormsExpander.Properties.Resources">
             <summary>
               Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
@@ -88,6 +108,21 @@
             <summary>
               Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
               Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Category_Appearance">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Appearance ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Category_ChangedProperty">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Changed property ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Category_Layout">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Layout ähnelt.
             </summary>
         </member>
         <member name="P:WindowsFormsExpander.Properties.Resources.collapseImage">
@@ -118,6 +153,16 @@
         <member name="P:WindowsFormsExpander.Properties.Resources.Description_Expander">
             <summary>
               Sucht eine lokalisierte Zeichenfolge, die A container control that can be collapsed and expanded. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_HeaderHeight">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Gets or sets the height of the Expander&apos;s header button. ähnelt.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsExpander.Properties.Resources.Description_HeaderHeightChanged">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die Raised when HeaderHeight property has been changed. ähnelt.
             </summary>
         </member>
         <member name="P:WindowsFormsExpander.Properties.Resources.expandImage">

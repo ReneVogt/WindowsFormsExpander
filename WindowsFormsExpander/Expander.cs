@@ -5,6 +5,7 @@ using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
+using WindowsFormsExpander.Properties;
 
 #nullable enable
 
@@ -22,15 +23,8 @@ namespace WindowsFormsExpander
     ]
     public class Expander : Control
     {
-        #region Types
-        enum AnimationMode
-        {
-            None,
-            Expanding,
-            Collapsing
-        }
-        #endregion
         #region Constants
+        const int defaultHeaderHeight = 24;
         static readonly ControlStyles enabledStyles =
             ControlStyles.AllPaintingInWmPaint |
             ControlStyles.ContainerControl |
@@ -52,20 +46,15 @@ namespace WindowsFormsExpander
             ControlStyles.UserMouse;
         #endregion
         #region Fields
-        readonly Timer animationTimer;
-        AnimationMode animationMode;
-
         bool expanded = true;
         bool collapseButtonPressed;
-        int expandedHeight;
+        int expandedHeight, headerHeight;
         #endregion
         #region Private properties
-        int HeaderHeight => Font.Height * 3;
-        int AnimationSpeed => ExpandedHeight / 5;
         static int FocusPadding => 2;
         static int ButtonPadding => 5;
         static int ImagePadding => 10;
-        Rectangle BorderRect => new(Padding.Left, Padding.Top + HeaderHeight, Width - Padding.Horizontal, Height - Padding.Vertical - HeaderHeight);
+        Rectangle BorderRect => new(Padding.Left, Padding.Top + HeaderHeight, Width - Padding.Horizontal, ExpandedHeight - Padding.Vertical - HeaderHeight);
         Rectangle HeaderRect => new(Padding.Left, Padding.Top, Width - Padding.Horizontal, HeaderHeight);
         Rectangle FocusRect => new(Padding.Left + FocusPadding, Padding.Top + FocusPadding, HeaderHeight - 2 * FocusPadding, HeaderHeight - 2 * FocusPadding);
         Rectangle ButtonRect => new(Padding.Left + ButtonPadding, Padding.Top + ButtonPadding, HeaderHeight - 2 * ButtonPadding, HeaderHeight - 2 * ButtonPadding);
@@ -85,13 +74,27 @@ namespace WindowsFormsExpander
         /// <summary>
         /// Raised when <see cref="Expanded"/> has been changed.
         /// </summary>
-        [ExpanderDescription("Description_ExpandedChanged")]
+        [
+            ExpanderDescription(nameof(Resources.Description_ExpandedChanged)),
+            ExpanderCategory(nameof(Resources.Category_ChangedProperty))
+        ]
         public event EventHandler? ExpandedChanged;
         /// <summary>
         /// Raised when <see cref="ExpandedHeight"/> has been changed.
         /// </summary>
-        [ExpanderDescription("Description_ExpandedHeightChanged")]
+        [
+            ExpanderDescription(nameof(Resources.Description_ExpandedHeightChanged)),
+            ExpanderCategory(nameof(Resources.Category_ChangedProperty))
+        ]
         public event EventHandler? ExpandedHeightChanged;
+        /// <summary>
+        /// Raised when <see cref="HeaderHeight"/> has been changed.
+        /// </summary>
+        [
+            ExpanderDescription(nameof(Resources.Description_HeaderHeightChanged)),
+            ExpanderCategory(nameof(Resources.Category_ChangedProperty))
+        ]
+        public event EventHandler? HeaderHeightChanged;
         #endregion
         #region Properties
         /// <summary>
@@ -101,7 +104,8 @@ namespace WindowsFormsExpander
         [
             Browsable(true),
             DefaultValue(true),
-            ExpanderDescription("Description_Expanded")
+            ExpanderDescription(nameof(Resources.Description_Expanded)),
+            ExpanderCategory(nameof(Resources.Category_Appearance))
         ]
         public bool Expanded
         {
@@ -119,7 +123,9 @@ namespace WindowsFormsExpander
         /// </summary>
         [
             Browsable(true),
-            ExpanderDescription("Description_ExpandedHeight")
+            Localizable(true),
+            ExpanderDescription(nameof(Resources.Description_ExpandedHeight)),
+            ExpanderCategory(nameof(Resources.Category_Layout))
         ]
         public int ExpandedHeight
         {
@@ -129,6 +135,26 @@ namespace WindowsFormsExpander
                 if (value == expandedHeight) return;
                 expandedHeight = value;
                 OnExpandedHeightChanged(EventArgs.Empty);
+            }
+        }
+        /// <summary>
+        /// Gets or sets the height of the <see cref="Expander"/>'s header button.
+        /// </summary>
+        [
+            Browsable(true),
+            Localizable(true),
+            ExpanderDescription(nameof(Resources.Description_HeaderHeight)),
+            DefaultValue(defaultHeaderHeight),
+            ExpanderCategory(nameof(Resources.Category_Layout))
+        ]
+        public int HeaderHeight
+        {
+            get => headerHeight;
+            set
+            {
+                if (headerHeight == value) return;
+                headerHeight = value;
+                OnHeaderHeightChanged(EventArgs.Empty);
             }
         }
         #endregion
@@ -141,12 +167,6 @@ namespace WindowsFormsExpander
             SetStyle(enabledStyles,true);
             SetStyle(disabledStyles, false);
             TabStop = true;
-
-            animationTimer = new Timer()
-            {
-                Interval = 40
-            };
-            animationTimer.Tick += OnAnimationTimer;
         }
         #endregion
         #region Overridden methos
@@ -166,7 +186,7 @@ namespace WindowsFormsExpander
             using var imageBrush = new SolidBrush(Enabled ? Color.Black : Color.Gray);
             using var imagePen = new Pen(imageBrush, ImagePenWidth);
             var imageRect = ImageRect;
-            pe.Graphics.DrawEllipse(imagePen, imageRect);
+//            pe.Graphics.DrawEllipse(imagePen, imageRect);
             pe.Graphics.FillRectangle(imageBrush, imageRect.Left + 3, imageRect.Top + imageRect.Height / 2, imageRect.Width - 6, ImagePenWidth);
             if (!Expanded)
                 pe.Graphics.FillRectangle(imageBrush, imageRect.Left + imageRect.Width / 2, imageRect.Top + 3, ImagePenWidth, imageRect.Height - 6);
@@ -193,7 +213,7 @@ namespace WindowsFormsExpander
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            if (Expanded && animationMode == AnimationMode.None)
+            if (Expanded)
                 ExpandedHeight = Height;
         }
         /// <inheritdoc />
@@ -255,8 +275,7 @@ namespace WindowsFormsExpander
         /// <param name="e"></param>
         protected virtual void OnExpandedChanged(EventArgs e)
         {
-            animationMode = Expanded ? AnimationMode.Expanding : AnimationMode.Collapsing;
-            animationTimer.Start();
+            Height = Expanded ? ExpandedHeight : HeaderHeight;
             ExpandedChanged?.Invoke(this, e);
         }
         /// <summary>
@@ -266,30 +285,19 @@ namespace WindowsFormsExpander
         /// <param name="e"></param>
         protected virtual void OnExpandedHeightChanged(EventArgs e)
         {
-            if (Expanded && animationMode == AnimationMode.None)
+            if (Expanded)
                 Height = ExpandedHeight;
             ExpandedHeightChanged?.Invoke(this, e);
         }
-        void OnAnimationTimer(object sender, EventArgs e)
+        /// <summary>
+        /// Called when <see cref="HeaderHeight"/> has been changed.
+        /// Raises the <see cref="HeaderHeightChanged"/> event.
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnHeaderHeightChanged(EventArgs e)
         {
-            animationTimer.Stop();
-            switch (animationMode)
-            {
-                case AnimationMode.Collapsing:
-                    Height = Math.Max(Height - AnimationSpeed, HeaderHeight);
-                    if (Height > HeaderHeight)
-                        animationTimer.Start();
-                    else
-                        animationMode = AnimationMode.None;
-                    break;
-                case AnimationMode.Expanding:
-                    Height = Math.Min(Height + AnimationSpeed, ExpandedHeight);
-                    if (Height < ExpandedHeight)
-                        animationTimer.Start();
-                    else
-                        animationMode = AnimationMode.None;
-                    break;
-            }
+            HeaderHeightChanged?.Invoke(this, e);
+            Invalidate();
         }
         #endregion
     }

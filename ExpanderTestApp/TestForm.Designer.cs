@@ -31,9 +31,9 @@ namespace ExpanderTestApp
         {
             this.outerSplitter = new System.Windows.Forms.SplitContainer();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
+            this.button1 = new System.Windows.Forms.Button();
             this.lowerExpander = new WindowsFormsExpander.Expander();
             this.upperExpander = new WindowsFormsExpander.Expander();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).BeginInit();
             this.outerSplitter.Panel1.SuspendLayout();
             this.outerSplitter.Panel2.SuspendLayout();
@@ -56,7 +56,7 @@ namespace ExpanderTestApp
             this.outerSplitter.Panel2.Controls.Add(this.lowerExpander);
             this.outerSplitter.Panel2.Controls.Add(this.upperExpander);
             this.outerSplitter.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.outerSplitter.Size = new System.Drawing.Size(528, 413);
+            this.outerSplitter.Size = new System.Drawing.Size(528, 633);
             this.outerSplitter.SplitterDistance = 221;
             this.outerSplitter.TabIndex = 0;
             // 
@@ -65,8 +65,17 @@ namespace ExpanderTestApp
             this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.propertyGrid.Location = new System.Drawing.Point(0, 0);
             this.propertyGrid.Name = "propertyGrid";
-            this.propertyGrid.Size = new System.Drawing.Size(221, 413);
+            this.propertyGrid.Size = new System.Drawing.Size(221, 633);
             this.propertyGrid.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(45, 173);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(188, 146);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // lowerExpander
             // 
@@ -88,20 +97,11 @@ namespace ExpanderTestApp
             this.upperExpander.TabIndex = 0;
             this.upperExpander.Text = "Upper expander";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(53, 238);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 146);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 413);
+            this.ClientSize = new System.Drawing.Size(528, 633);
             this.Controls.Add(this.outerSplitter);
             this.Name = "TestForm";
             this.ShowIcon = false;

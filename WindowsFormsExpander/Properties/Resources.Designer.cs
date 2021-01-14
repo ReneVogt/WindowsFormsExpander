@@ -61,6 +61,33 @@ namespace WindowsFormsExpander.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Appearance ähnelt.
+        /// </summary>
+        internal static string Category_Appearance {
+            get {
+                return ResourceManager.GetString("Category_Appearance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Changed property ähnelt.
+        /// </summary>
+        internal static string Category_ChangedProperty {
+            get {
+                return ResourceManager.GetString("Category_ChangedProperty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layout ähnelt.
+        /// </summary>
+        internal static string Category_Layout {
+            get {
+                return ResourceManager.GetString("Category_Layout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap collapseImage {
@@ -112,6 +139,24 @@ namespace WindowsFormsExpander.Properties {
         internal static string Description_Expander {
             get {
                 return ResourceManager.GetString("Description_Expander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Gets or sets the height of the Expander&apos;s header button. ähnelt.
+        /// </summary>
+        internal static string Description_HeaderHeight {
+            get {
+                return ResourceManager.GetString("Description_HeaderHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Raised when HeaderHeight property has been changed. ähnelt.
+        /// </summary>
+        internal static string Description_HeaderHeightChanged {
+            get {
+                return ResourceManager.GetString("Description_HeaderHeightChanged", resourceCulture);
             }
         }
         
