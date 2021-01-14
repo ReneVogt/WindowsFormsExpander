@@ -109,6 +109,20 @@
         <member name="M:WindowsFormsExpander.Expander.OnFontChanged(System.EventArgs)">
             <inheritdoc />
         </member>
+        <member name="T:WindowsFormsExpander.ExpanderDesigner">
+            <summary>
+            Provides design time support for the <see cref="T:WindowsFormsExpander.Expander"/> control.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsExpander.ExpanderDesigner.Initialize(System.ComponentModel.IComponent)">
+            <inheritdoc />
+        </member>
+        <member name="P:WindowsFormsExpander.ExpanderDesigner.SnapLines">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.ExpanderDesigner.InitializeNewComponent(System.Collections.IDictionary)">
+            <inheritdoc />
+        </member>
         <member name="M:WindowsFormsExpander.LocalizedAttributes.ExpanderCategory.GetLocalizedString(System.String)">
             <inheritdoc />
         </member>

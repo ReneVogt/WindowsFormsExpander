@@ -17,7 +17,8 @@ namespace WindowsFormsExpander
         ClassInterface(ClassInterfaceType.AutoDispatch),
         DefaultProperty(nameof(Text)),
         DefaultEvent(nameof(ExpandedChanged)),
-        ExpanderDescription("Description_Expander")
+        ExpanderDescription("Description_Expander"),
+        Designer(typeof(ExpanderDesigner))
     ]
     public partial class Expander : Control
     {

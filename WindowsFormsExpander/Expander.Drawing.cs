@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.Design.Behavior;
 using System.Windows.Forms.VisualStyles;
 using WindowsFormsExpander.Properties;
 
@@ -42,9 +44,22 @@ namespace WindowsFormsExpander
 
             textRect = new(headerRect.Left + headerPadding, headerRect.Top + headerPadding, headerRect.Width - 2 * headerPadding,
                            headerRect.Height - 2 * headerPadding);
+            if (IsHandleCreated)
+            {
+                using var graphics = Graphics.FromHwnd(Handle);
+                using var format = GetStringFormat();
+
+                var textSize = Size.Ceiling(graphics.MeasureString(Text, Font, textRect.Size, format));
+
+                textRect = new (
+                    textRect.Left,
+                    textRect.Top + (textRect.Height - textSize.Height) / 2,
+                    textSize.Width, textSize.Height);
+
+            }
 
             focusRect = new(headerRect.Left + focusPadding, headerRect.Top + focusPadding, headerRect.Width - 2 * focusPadding,
-                           headerRect.Height - 2 * focusPadding);
+                            headerRect.Height - 2 * focusPadding);
 
             displayRect = new(
                 Padding.Left + 2,
@@ -89,30 +104,16 @@ namespace WindowsFormsExpander
         {
             ControlPaint.DrawButton(e.Graphics, headerRect, ButtonState);
 
-            using var format = new StringFormat
-            {
-                HotkeyPrefix = ShowKeyboardCues ? HotkeyPrefix.Show : HotkeyPrefix.Hide
-            };
-             
-            if (RightToLeft == RightToLeft.Yes)
-                format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
-
-            var textSize = Size.Ceiling(e.Graphics.MeasureString(Text, Font, textRect.Size, format));
-
-            var finalTextRect = new Rectangle(
-                textRect.Left,
-                textRect.Top + (textRect.Height - textSize.Height) / 2,
-                textSize.Width, textSize.Height);
-
             if (Enabled)
             {
                 using var textBrush = new SolidBrush(ForeColor);
-                e.Graphics.DrawString(Text, Font, textBrush, finalTextRect);
+                e.Graphics.DrawString(Text, Font, textBrush, textRect);
                 e.Graphics.DrawImageUnscaledAndClipped(ButtonImage, imageRect);
             }
             else
             {
-                ControlPaint.DrawStringDisabled(e.Graphics, Text, Font, BackColor, finalTextRect, format);
+                using var format = GetStringFormat();
+                ControlPaint.DrawStringDisabled(e.Graphics, Text, Font, BackColor, textRect, format);
                 ControlPaint.DrawImageDisabled(e.Graphics, ButtonImage, imageRect.Left, imageRect.Top, BackColor);
             }
 
@@ -122,8 +123,29 @@ namespace WindowsFormsExpander
         void DrawContent(PaintEventArgs e)
         {
             if (Expanded && e.ClipRectangle.IntersectsWith(borderRect))
-                //ControlPaint.DrawBorder3D(e.Graphics, borderRect, Border3DStyle.Flat);
                 ControlPaint.DrawBorder(e.Graphics, borderRect, SystemColors.ActiveBorder, ButtonBorderStyle.Solid);
         }
+        StringFormat GetStringFormat()
+        {
+            var format = new StringFormat
+            {
+                HotkeyPrefix = ShowKeyboardCues ? HotkeyPrefix.Show : HotkeyPrefix.Hide
+            };
+            if (RightToLeft == RightToLeft.Yes)
+                format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+            
+            return format;
+        }
+        internal List<SnapLine> SnapLines => new()
+        {
+            new (SnapLineType.Left, 0, SnapLinePriority.High),
+            new(SnapLineType.Top, 0, SnapLinePriority.High),
+            new(SnapLineType.Right, Width, SnapLinePriority.High),
+            new(SnapLineType.Bottom, Height, SnapLinePriority.High),
+
+            new(SnapLineType.Baseline, textRect.Bottom, SnapLinePriority.High),
+
+            new (SnapLineType.Top, headerRect.Height, SnapLinePriority.High)
+        };
     }
 }
