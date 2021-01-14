@@ -109,6 +109,9 @@
         <member name="M:WindowsFormsExpander.Expander.OnFontChanged(System.EventArgs)">
             <inheritdoc />
         </member>
+        <member name="M:WindowsFormsExpander.Expander.Select(System.Boolean,System.Boolean)">
+            <inheritdoc />
+        </member>
         <member name="T:WindowsFormsExpander.ExpanderDesigner">
             <summary>
             Provides design time support for the <see cref="T:WindowsFormsExpander.Expander"/> control.

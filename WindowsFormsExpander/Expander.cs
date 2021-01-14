@@ -42,10 +42,7 @@ namespace WindowsFormsExpander
             {
                 if (value == expanded) return;
                 expanded = value;
-                if (expanded)
-                    ResumeLayout();
-                else
-                    SuspendLayout();
+                SetExpansionMode();
                 OnExpandedChanged(EventArgs.Empty);
             }
         }
@@ -99,6 +96,19 @@ namespace WindowsFormsExpander
             SetStyle(disabledStyles, false);
             TabStop = true;
             RefreshRectangles();
+        }
+
+        void SetExpansionMode()
+        {
+            if (expanded)
+            {
+                ResumeLayout();
+                return;
+            }
+
+            if (ContainsFocus)
+                Focus();
+            SuspendLayout();
         }
     }
 }
