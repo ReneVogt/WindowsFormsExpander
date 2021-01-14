@@ -70,7 +70,7 @@ namespace ExpanderTestApp
             // 
             this.expander.Controls.Add(this.button1);
             this.expander.ExpandedHeight = 244;
-            this.expander.Location = new System.Drawing.Point(20, 17);
+            this.expander.Location = new System.Drawing.Point(41, 50);
             this.expander.Name = "expander";
             this.expander.Size = new System.Drawing.Size(195, 244);
             this.expander.TabIndex = 0;
