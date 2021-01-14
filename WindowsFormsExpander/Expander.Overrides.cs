@@ -9,7 +9,12 @@ namespace WindowsFormsExpander
     partial class Expander : Control
     {
         /// <inheritdoc />
+        // ReSharper disable once ConvertToAutoProperty
         public override Rectangle DisplayRectangle => displayRect;
+        /// <inheritdoc />
+        protected override bool ShowFocusCues => true;
+        /// <inheritdoc />
+        protected override bool ShowKeyboardCues => true;
 
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
@@ -37,78 +42,6 @@ namespace WindowsFormsExpander
         {
             Invalidate();
             base.OnLostFocus(e);
-        }
-        /// <inheritdoc />
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            if (collapseButtonHovered)
-            {
-                collapseButtonHovered = false;
-                Invalidate(headerRect);
-            }
-            base.OnMouseLeave(e);
-        }
-        /// <inheritdoc />
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            Focus();
-            if (e.Button == MouseButtons.Left && headerRect.Contains(e.Location) && !collapseButtonPressed)
-            {
-                collapseButtonPressed = true;
-                Invalidate(headerRect);
-            }
-            base.OnMouseDown(e);
-        }
-        /// <inheritdoc />
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            if (headerRect.Contains(e.Location))
-            {
-                if (!collapseButtonHovered)
-                {
-                    collapseButtonHovered = true;
-                    Invalidate(headerRect);
-                }
-            }
-            else
-            {
-                if (collapseButtonHovered)
-                {
-                    collapseButtonHovered = false;
-                    Invalidate(headerRect);
-
-                }
-
-                if (collapseButtonPressed)
-                {
-                    collapseButtonPressed = false;
-                    Invalidate(headerRect);
-                }
-            }
-
-            base.OnMouseMove(e);
-        }
-        /// <inheritdoc />
-        protected override void OnMouseUp(MouseEventArgs e)
-        {
-            if (collapseButtonPressed && e.Button == MouseButtons.Left)
-            {
-                collapseButtonPressed = false;
-                Invalidate(headerRect);
-            }
-            base.OnMouseUp(e);
-        }
-        /// <inheritdoc />
-        protected override void OnMouseClick(MouseEventArgs e)
-        {
-            if (headerRect.Contains(e.Location) && e.Button == MouseButtons.Left)
-            {
-                Expanded = !Expanded;
-                if (e is HandledMouseEventArgs he)
-                    he.Handled = true;
-            }
-
-            base.OnMouseClick(e);
         }
         /// <inheritdoc />
         protected override void OnFontChanged(EventArgs e)

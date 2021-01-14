@@ -1,8 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
@@ -25,7 +22,6 @@ namespace WindowsFormsExpander
     public partial class Expander : Control
     {
         bool expanded = true;
-        bool collapseButtonPressed, collapseButtonHovered;
         int expandedHeight, headerHeight = defaultHeaderHeight;
 
         /// <summary>
@@ -88,7 +84,6 @@ namespace WindowsFormsExpander
                 OnHeaderHeightChanged(EventArgs.Empty);
             }
         }
-
 
         /// <summary>
         /// Creates a new <see cref="Expander"/> control.

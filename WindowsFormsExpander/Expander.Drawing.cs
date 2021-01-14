@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using WindowsFormsExpander.Properties;
@@ -10,31 +11,41 @@ namespace WindowsFormsExpander
 {
     partial class Expander : Control
     {
-        Rectangle borderRect, headerRect, imageRect, displayRect;
+        const int headerPadding = 4;
+        const int focusPadding = 2;
+        const int imageSize = 16;
+
+        Rectangle borderRect, headerRect, imageRect, displayRect, textRect, focusRect;
         ButtonState ButtonState => Enabled
-                                       ? collapseButtonPressed
+                                       ? CollapseButtonPressed
                                              ? ButtonState.Pushed
                                              : ButtonState.Normal
                                        : ButtonState.Inactive;
         PushButtonState PushButtonState => Enabled
-                                               ? collapseButtonPressed
+                                               ? CollapseButtonPressed
                                                      ? PushButtonState.Pressed
-                                                     : collapseButtonHovered
+                                                     : CollapseButtonHovered
                                                          ? PushButtonState.Hot
                                                          : PushButtonState.Normal
                                                : PushButtonState.Disabled;
+        Image ButtonImage => Expanded ? Resources.collapseImage : Resources.expandImage;
 
         void RefreshRectangles()
         {
             borderRect =  new(Padding.Left, Padding.Top + HeaderHeight, Width - Padding.Horizontal, ExpandedHeight - Padding.Vertical - HeaderHeight);
             headerRect = new(Padding.Left, Padding.Top, Width - Padding.Horizontal, HeaderHeight);
 
-            const int imageMargin = 8;
-            const int proposedSize = 16;// Math.Min(16, Math.Max(0, headerRect.Height - 2 * imageMargin));
             imageRect = new(
-                Math.Max(0, Width - Padding.Right - imageMargin - proposedSize),
-                Padding.Top + Math.Max(0, headerRect.Height - proposedSize) / 2,
-                proposedSize, proposedSize);
+                Math.Max(0, Width - Padding.Right - headerPadding - imageSize),
+                Padding.Top + Math.Max(0, headerRect.Height - imageSize) / 2,
+                imageSize, imageSize);
+
+            textRect = new(headerRect.Left + headerPadding, headerRect.Top + headerPadding, headerRect.Width - 2 * headerPadding,
+                           headerRect.Height - 2 * headerPadding);
+
+            focusRect = new(headerRect.Left + focusPadding, headerRect.Top + focusPadding, headerRect.Width - 2 * focusPadding,
+                           headerRect.Height - 2 * focusPadding);
+
             displayRect = new(
                 Padding.Left + 2,
                 Padding.Top + HeaderHeight + 2,
@@ -69,33 +80,44 @@ namespace WindowsFormsExpander
                 Text,
                 Font,
                 textFormatFlags,
-                Expanded ? Resources.collapseImage : Resources.expandImage,
+                ButtonImage,
                 imageRect,
-                Focused,
+                Focused && ShowFocusCues,
                 PushButtonState);
         }
         void DrawButtonWithoutVisualStyles(PaintEventArgs e)
         {
             ControlPaint.DrawButton(e.Graphics, headerRect, ButtonState);
-            
 
-            //using var format = new StringFormat
-            //{
-            //    HotkeyPrefix = ShowKeyboardCues ? HotkeyPrefix.Show : HotkeyPrefix.Hide
-            //};
-            //if (RightToLeft == RightToLeft.Yes)
-            //    format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
+            using var format = new StringFormat
+            {
+                HotkeyPrefix = ShowKeyboardCues ? HotkeyPrefix.Show : HotkeyPrefix.Hide
+            };
+             
+            if (RightToLeft == RightToLeft.Yes)
+                format.FormatFlags |= StringFormatFlags.DirectionRightToLeft;
 
-            //if (Enabled)
-            //{
-            //    using var textBrush = new SolidBrush(ForeColor);
-            //    e.Graphics.DrawString(Text, Font, textBrush, TextRect);
-            //}
-            //else
-            //    ControlPaint.DrawStringDisabled(e.Graphics, Text, Font, BackColor, TextRect, format);
+            var textSize = Size.Ceiling(e.Graphics.MeasureString(Text, Font, textRect.Size, format));
 
-            //if (Focused)
-            //    ControlPaint.DrawFocusRectangle(e.Graphics, FocusRect);
+            var finalTextRect = new Rectangle(
+                textRect.Left,
+                textRect.Top + (textRect.Height - textSize.Height) / 2,
+                textSize.Width, textSize.Height);
+
+            if (Enabled)
+            {
+                using var textBrush = new SolidBrush(ForeColor);
+                e.Graphics.DrawString(Text, Font, textBrush, finalTextRect);
+                e.Graphics.DrawImageUnscaledAndClipped(ButtonImage, imageRect);
+            }
+            else
+            {
+                ControlPaint.DrawStringDisabled(e.Graphics, Text, Font, BackColor, finalTextRect, format);
+                ControlPaint.DrawImageDisabled(e.Graphics, ButtonImage, imageRect.Left, imageRect.Top, BackColor);
+            }
+
+            if (Focused && ShowFocusCues)
+                ControlPaint.DrawFocusRectangle(e.Graphics, focusRect);
         }
         void DrawContent(PaintEventArgs e)
         {

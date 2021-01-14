@@ -67,21 +67,6 @@
             </summary>
             <param name="e"></param>
         </member>
-        <member name="P:WindowsFormsExpander.Expander.DisplayRectangle">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnSizeChanged(System.EventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnGotFocus(System.EventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
-            <inheritdoc />
-        </member>
         <member name="M:WindowsFormsExpander.Expander.OnMouseLeave(System.EventArgs)">
             <inheritdoc />
         </member>
@@ -95,6 +80,27 @@
             <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.Expander.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.DisplayRectangle">
+            <inheritdoc />
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.ShowFocusCues">
+            <inheritdoc />
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.ShowKeyboardCues">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnSizeChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnGotFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
             <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.Expander.OnFontChanged(System.EventArgs)">

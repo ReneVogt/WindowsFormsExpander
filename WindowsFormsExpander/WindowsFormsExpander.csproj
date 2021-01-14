@@ -73,6 +73,12 @@
       <DependentUpon>Expander.cs</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Expander.Keyboard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expander.Mouse.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Expander.Overrides.cs">
       <DependentUpon>Expander.cs</DependentUpon>
       <SubType>Component</SubType>
