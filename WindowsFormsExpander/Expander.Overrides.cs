@@ -49,5 +49,11 @@ namespace WindowsFormsExpander
             Invalidate();
             base.OnFontChanged(e);
         }
+        /// <inheritdoc />
+        protected override void OnRightToLeftChanged(EventArgs e)
+        {
+            Invalidate();
+            base.OnRightToLeftChanged(e);
+        }
     }
 }
