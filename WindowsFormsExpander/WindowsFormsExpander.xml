@@ -67,6 +67,9 @@
             </summary>
             <param name="e"></param>
         </member>
+        <member name="M:WindowsFormsExpander.Expander.OnKeyUp(System.Windows.Forms.KeyEventArgs)">
+            <inheritdoc />
+        </member>
         <member name="M:WindowsFormsExpander.Expander.OnMouseLeave(System.EventArgs)">
             <inheritdoc />
         </member>

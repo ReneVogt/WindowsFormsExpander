@@ -10,8 +10,6 @@ namespace ExpanderTestApp
             InitializeComponent();
             lowerExpander.GotFocus += OnExpanderFocused;
             upperExpander.GotFocus += OnExpanderFocused;
-
-
         }
         void OnExpanderFocused(object sender, EventArgs e)
         {
