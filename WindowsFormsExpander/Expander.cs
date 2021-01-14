@@ -42,6 +42,10 @@ namespace WindowsFormsExpander
             {
                 if (value == expanded) return;
                 expanded = value;
+                if (expanded)
+                    ResumeLayout();
+                else
+                    SuspendLayout();
                 OnExpandedChanged(EventArgs.Empty);
             }
         }

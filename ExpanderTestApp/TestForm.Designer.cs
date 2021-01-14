@@ -69,16 +69,17 @@ namespace ExpanderTestApp
             // expander
             // 
             this.expander.Controls.Add(this.button1);
-            this.expander.ExpandedHeight = 269;
-            this.expander.Location = new System.Drawing.Point(25, 72);
+            this.expander.ExpandedHeight = 244;
+            this.expander.Location = new System.Drawing.Point(20, 17);
             this.expander.Name = "expander";
-            this.expander.Size = new System.Drawing.Size(221, 269);
+            this.expander.Size = new System.Drawing.Size(195, 244);
             this.expander.TabIndex = 0;
             this.expander.Text = "Expander";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(113, 92);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(11, 210);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;

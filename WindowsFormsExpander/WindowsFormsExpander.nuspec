@@ -2,15 +2,18 @@
 <package >
   <metadata>
     <id>$id$</id>
-    <version>$version$</version>
+    <version>0.5.0-preview-1</version>
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes/>
-    <copyright>$copyright</copyright>
+    <copyright>$copyright$</copyright>
     <tags>winforms, Windows Forms, Expander, Controls</tags>
+    <projectUrl>https://github.com/ReneVogt/WindowsFormsExpander</projectUrl>
+    <license type="expression">MIT</license>
+    <repository type="git" url="https://github.com/ReneVogt/WindowsFormsExpander.git" branch="master"/>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2" />
     </dependencies>
