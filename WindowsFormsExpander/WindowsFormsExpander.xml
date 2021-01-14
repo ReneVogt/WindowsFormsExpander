@@ -9,21 +9,6 @@
             A container control that can be collapsed and expanded.
             </summary>
         </member>
-        <member name="E:WindowsFormsExpander.Expander.ExpandedChanged">
-            <summary>
-            Raised when <see cref="P:WindowsFormsExpander.Expander.Expanded"/> has been changed.
-            </summary>
-        </member>
-        <member name="E:WindowsFormsExpander.Expander.ExpandedHeightChanged">
-            <summary>
-            Raised when <see cref="P:WindowsFormsExpander.Expander.ExpandedHeight"/> has been changed.
-            </summary>
-        </member>
-        <member name="E:WindowsFormsExpander.Expander.HeaderHeightChanged">
-            <summary>
-            Raised when <see cref="P:WindowsFormsExpander.Expander.HeaderHeight"/> has been changed.
-            </summary>
-        </member>
         <member name="P:WindowsFormsExpander.Expander.Expanded">
             <summary>
             Gets or sets a value indicating if this <see cref="T:WindowsFormsExpander.Expander"/> is currently
@@ -46,29 +31,20 @@
             Creates a new <see cref="T:WindowsFormsExpander.Expander"/> control.
             </summary>
         </member>
-        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
-            <inheritdoc />
+        <member name="E:WindowsFormsExpander.Expander.ExpandedChanged">
+            <summary>
+            Raised when <see cref="P:WindowsFormsExpander.Expander.Expanded"/> has been changed.
+            </summary>
         </member>
-        <member name="M:WindowsFormsExpander.Expander.OnSizeChanged(System.EventArgs)">
-            <inheritdoc />
+        <member name="E:WindowsFormsExpander.Expander.ExpandedHeightChanged">
+            <summary>
+            Raised when <see cref="P:WindowsFormsExpander.Expander.ExpandedHeight"/> has been changed.
+            </summary>
         </member>
-        <member name="M:WindowsFormsExpander.Expander.OnGotFocus(System.EventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
-            <inheritdoc />
+        <member name="E:WindowsFormsExpander.Expander.HeaderHeightChanged">
+            <summary>
+            Raised when <see cref="P:WindowsFormsExpander.Expander.HeaderHeight"/> has been changed.
+            </summary>
         </member>
         <member name="M:WindowsFormsExpander.Expander.OnExpandedChanged(System.EventArgs)">
             <summary>
@@ -90,6 +66,39 @@
             Raises the <see cref="E:WindowsFormsExpander.Expander.HeaderHeightChanged"/> event.
             </summary>
             <param name="e"></param>
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.DisplayRectangle">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnSizeChanged(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnGotFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseLeave(System.EventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.OnFontChanged(System.EventArgs)">
+            <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.LocalizedAttributes.ExpanderCategory.GetLocalizedString(System.String)">
             <inheritdoc />

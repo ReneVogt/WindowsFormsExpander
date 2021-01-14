@@ -31,7 +31,6 @@ namespace ExpanderTestApp
         {
             this.outerSplitter = new System.Windows.Forms.SplitContainer();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
-            this.button1 = new System.Windows.Forms.Button();
             this.lowerExpander = new WindowsFormsExpander.Expander();
             this.upperExpander = new WindowsFormsExpander.Expander();
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).BeginInit();
@@ -52,7 +51,6 @@ namespace ExpanderTestApp
             // 
             // outerSplitter.Panel2
             // 
-            this.outerSplitter.Panel2.Controls.Add(this.button1);
             this.outerSplitter.Panel2.Controls.Add(this.lowerExpander);
             this.outerSplitter.Panel2.Controls.Add(this.upperExpander);
             this.outerSplitter.Panel2.Padding = new System.Windows.Forms.Padding(5);
@@ -67,15 +65,6 @@ namespace ExpanderTestApp
             this.propertyGrid.Name = "propertyGrid";
             this.propertyGrid.Size = new System.Drawing.Size(221, 633);
             this.propertyGrid.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(45, 173);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 146);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // lowerExpander
             // 
@@ -121,7 +110,6 @@ namespace ExpanderTestApp
         private WindowsFormsExpander.Expander upperExpander;
         private WindowsFormsExpander.Expander lowerExpander;
         private System.Windows.Forms.PropertyGrid propertyGrid;
-        private System.Windows.Forms.Button button1;
     }
 }
 

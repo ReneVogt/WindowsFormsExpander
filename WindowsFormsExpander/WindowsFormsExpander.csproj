@@ -58,7 +58,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expander.Constants.cs">
+      <DependentUpon>Expander.cs</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Expander.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expander.Drawing.cs">
+      <SubType>Component</SubType>
+      <DependentUpon>Expander.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expander.Events.cs">
+      <DependentUpon>Expander.cs</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Expander.Overrides.cs">
+      <DependentUpon>Expander.cs</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="LocalizedAttributes\ExpanderCategory.cs" />
