@@ -13,15 +13,15 @@ is collapsed.
 - #4: Started documentation and project web site.
 
 
-### Version 0.5.0-preview-4 (2021/02/15)
+### Version 0.5.0-preview-4 (2021/01/15)
 
 Minor fixes.
 
-### Version 0.5.0-preview-3 (2021/02/14)
+### Version 0.5.0-preview-3 (2021/01/14)
 
 Minor fixes.
 
-### Version 0.5.0-preview-2 (2021/02/14)
+### Version 0.5.0-preview-2 (2021/01/14)
 
 Suspended layout when control is collapsed.
 
