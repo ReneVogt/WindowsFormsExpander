@@ -4,7 +4,8 @@
 
 The WindowsFormsExpander package provides an `Expander` control for Windows Forms.
 
-This project has just started, and only preview versions of the nuget have been published so far. This project/documenation site will be updated as development proceeds.
+This project has just started, and only preview versions of the nuget have been published so far.  
+These project and documenation pages will be updated as development proceeds.
 
 - [Nuget package](https://www.nuget.org/packages/WindowsFormsExpander)
 - [Release notes](ReleaseNotes.md)
