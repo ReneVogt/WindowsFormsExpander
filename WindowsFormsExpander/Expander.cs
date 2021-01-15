@@ -102,10 +102,9 @@ namespace WindowsFormsExpander
 
         void SetExpansionMode()
         {
-            Height = Expanded ? ExpandedHeight : HeaderHeight + Padding.Vertical;
-
             if (expanded)
             {
+                Height = ExpandedHeight;
                 ResumeLayout();
                 return;
             }
@@ -113,6 +112,8 @@ namespace WindowsFormsExpander
             if (ContainsFocus)
                 Focus();
             SuspendLayout();
+            Height = HeaderHeight + Padding.Vertical;
+
         }
     }
 }
