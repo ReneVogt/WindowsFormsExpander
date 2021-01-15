@@ -13,11 +13,7 @@ namespace WindowsFormsExpander
 {
     partial class Expander : Control
     {
-        const int headerPadding = 4;
-        const int focusPadding = 2;
-        const int imageSize = 16;
-
-        Rectangle borderRect, headerRect, imageRect, displayRect, textRect, focusRect;
+        Rectangle borderRect, headerRect, imageRect, textRect, focusRect;
         ButtonState ButtonState => Enabled
                                        ? CollapseButtonPressed
                                              ? ButtonState.Pushed
@@ -32,18 +28,37 @@ namespace WindowsFormsExpander
                                                : PushButtonState.Disabled;
         Image ButtonImage => Expanded ? Resources.collapseImage : Resources.expandImage;
 
+        
         void RefreshRectangles()
         {
-            borderRect =  new(Padding.Left, Padding.Top + HeaderHeight, Width - Padding.Horizontal, ExpandedHeight - Padding.Vertical - HeaderHeight);
-            headerRect = new(Padding.Left, Padding.Top, Width - Padding.Horizontal, HeaderHeight);
+            borderRect = new(
 
+                x: Padding.Left,
+                y: Padding.Top + HeaderHeight,
+                width: Math.Max(0, Width - Padding.Horizontal),
+                height: Math.Max(0, ExpandedHeight - Padding.Vertical - HeaderHeight)
+            );
+            headerRect = new(
+                x: Padding.Left,
+                y: Padding.Top,
+                width: Math.Max(0, Width - Padding.Horizontal),
+                height: HeaderHeight);
+            var paddedHeaderRect = new Rectangle(
+                x: headerRect.Left + headerPadding,
+                y: Padding.Top + headerPadding,
+                width: headerRect.Width - 2 * headerPadding,
+                height: headerRect.Height - 2 * headerPadding);
             imageRect = new(
-                Math.Max(0, Width - Padding.Right - headerPadding - imageSize),
-                Padding.Top + Math.Max(0, headerRect.Height - imageSize) / 2,
-                imageSize, imageSize);
-
-            textRect = new(headerRect.Left + headerPadding, headerRect.Top + headerPadding, headerRect.Width - 2 * headerPadding,
-                           headerRect.Height - 2 * headerPadding);
+                x: Math.Max(paddedHeaderRect.Left, paddedHeaderRect.Right - imageSize),
+                y: paddedHeaderRect.Top + Math.Max(0, paddedHeaderRect.Height - imageSize) / 2,
+                width: Math.Min(imageSize, paddedHeaderRect.Width), 
+                height: Math.Min(imageSize, paddedHeaderRect.Height));
+            textRect = new(
+                x: paddedHeaderRect.Left,
+                y: paddedHeaderRect.Top, 
+                width: paddedHeaderRect.Width,
+                height: paddedHeaderRect.Height);
+            
             if (IsHandleCreated)
             {
                 using var graphics = Graphics.FromHwnd(Handle);
@@ -53,19 +68,16 @@ namespace WindowsFormsExpander
 
                 textRect = new (
                     textRect.Left,
-                    textRect.Top + (textRect.Height - textSize.Height) / 2,
-                    textSize.Width, textSize.Height);
-
+                    Math.Min(headerRect.Bottom - headerPadding, textRect.Top + Math.Max(0, textRect.Height - textSize.Height) / 2),
+                    Math.Min(headerRect.Width - 2 * headerPadding, textSize.Width),
+                    Math.Min(headerRect.Height - 2 * headerPadding, textSize.Height));
             }
 
-            focusRect = new(headerRect.Left + focusPadding, headerRect.Top + focusPadding, headerRect.Width - 2 * focusPadding,
-                            headerRect.Height - 2 * focusPadding);
-
-            displayRect = new(
-                Padding.Left + 2,
-                Padding.Top + HeaderHeight + 2,
-                Math.Max(0, Width - Padding.Horizontal - 4),
-                Math.Max(0, Height - Padding.Vertical - HeaderHeight - 4));
+            focusRect = new(
+                x: headerRect.Left + focusPadding, 
+                y: headerRect.Top + focusPadding, 
+                width: Math.Max(0, headerRect.Width - 2 * focusPadding),
+                height: Math.Max(0, headerRect.Height - 2 * focusPadding));
         }
         void DrawHeader(PaintEventArgs e)
         {
@@ -138,14 +150,18 @@ namespace WindowsFormsExpander
         }
         internal List<SnapLine> SnapLines => new()
         {
-            new (SnapLineType.Left, 0, SnapLinePriority.High),
+            new(SnapLineType.Left, 0, SnapLinePriority.High),
+            new(SnapLineType.Left, Margin.Left, SnapLinePriority.High),
             new(SnapLineType.Top, 0, SnapLinePriority.High),
+            new(SnapLineType.Top, Margin.Top, SnapLinePriority.High),
             new(SnapLineType.Right, Width, SnapLinePriority.High),
+            new(SnapLineType.Right, Width - Margin.Right, SnapLinePriority.High),
             new(SnapLineType.Bottom, Height, SnapLinePriority.High),
-
+            new(SnapLineType.Bottom, Height - Margin.Bottom, SnapLinePriority.High),
             new(SnapLineType.Baseline, textRect.Bottom, SnapLinePriority.High),
-
-            new (SnapLineType.Top, headerRect.Height, SnapLinePriority.High)
+            new(SnapLineType.Top, headerRect.Height, SnapLinePriority.High),
+            new(SnapLineType.Baseline, headerRect.Height, SnapLinePriority.High),
+            new(SnapLineType.Horizontal, headerRect.Height, SnapLinePriority.High)
         };
     }
 }

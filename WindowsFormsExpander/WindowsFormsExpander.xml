@@ -94,6 +94,12 @@
         <member name="P:WindowsFormsExpander.Expander.ShowKeyboardCues">
             <inheritdoc />
         </member>
+        <member name="P:WindowsFormsExpander.Expander.DefaultPadding">
+            <inheritdoc />
+        </member>
+        <member name="P:WindowsFormsExpander.Expander.DefaultSize">
+            <inheritdoc />
+        </member>
         <member name="M:WindowsFormsExpander.Expander.OnPaint(System.Windows.Forms.PaintEventArgs)">
             <inheritdoc />
         </member>
@@ -106,10 +112,7 @@
         <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
             <inheritdoc />
         </member>
-        <member name="M:WindowsFormsExpander.Expander.OnFontChanged(System.EventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.Select(System.Boolean,System.Boolean)">
+        <member name="M:WindowsFormsExpander.Expander.SetClientSizeCore(System.Int32,System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:WindowsFormsExpander.ExpanderDesigner">
@@ -117,13 +120,13 @@
             Provides design time support for the <see cref="T:WindowsFormsExpander.Expander"/> control.
             </summary>
         </member>
-        <member name="M:WindowsFormsExpander.ExpanderDesigner.Initialize(System.ComponentModel.IComponent)">
+        <member name="P:WindowsFormsExpander.ExpanderDesigner.DefaultControlLocation">
             <inheritdoc />
         </member>
         <member name="P:WindowsFormsExpander.ExpanderDesigner.SnapLines">
             <inheritdoc />
         </member>
-        <member name="M:WindowsFormsExpander.ExpanderDesigner.InitializeNewComponent(System.Collections.IDictionary)">
+        <member name="M:WindowsFormsExpander.ExpanderDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
             <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.LocalizedAttributes.ExpanderCategory.GetLocalizedString(System.String)">

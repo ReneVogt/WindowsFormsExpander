@@ -1,31 +1,31 @@
 ﻿using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
+using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
 namespace WindowsFormsExpander
 {
     /// <summary>
-    /// Provides design time support for the <see cref="Expander"/> control.
+    /// Provides design time support for the <see cref="WindowsFormsExpander.Expander"/> control.
     /// </summary>
-    public class ExpanderDesigner : ParentControlDesigner
+    sealed class ExpanderDesigner : ParentControlDesigner
     {
-        /// <inheritdoc />
-        public override void Initialize(IComponent component)
-        {
-            base.Initialize(component);
-            if (Control is not Expander expander) return;
-            EnableDesignMode(expander, expander.Name);
-        }
+        Expander Expander => (Expander)Control;
 
         /// <inheritdoc />
-        public override IList SnapLines => (Control as Expander)?.SnapLines ?? base.SnapLines;
+        protected override Point DefaultControlLocation => Expander.DisplayRectangle.Location;
 
         /// <inheritdoc />
-        public override void InitializeNewComponent(IDictionary defaultValues)
+        public override IList SnapLines => Expander.SnapLines;
+
+        /// <inheritdoc />
+        protected override void OnPaintAdornments(PaintEventArgs e)
         {
-            base.InitializeNewComponent(defaultValues);
-            if (Control is Expander expander) expander.Size = new Size(250, 250);
+            if (!DrawGrid) return;
+            var displayRect = Expander.DisplayRectangle;
+            displayRect.Width++;
+            displayRect.Height++;
+            ControlPaint.DrawGrid(e.Graphics, displayRect, GridSize, Expander.BackColor);
         }
     }
 }

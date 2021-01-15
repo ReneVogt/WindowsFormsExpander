@@ -7,6 +7,11 @@ namespace WindowsFormsExpander
     partial class Expander : Control
     {
         const int defaultHeaderHeight = 24;
+        const int defaultExpandedHeight = 100;
+        const int headerPadding = 4;
+        const int focusPadding = 2;
+        const int imageSize = 16;
+
         static readonly ControlStyles enabledStyles =
             ControlStyles.AllPaintingInWmPaint |
             ControlStyles.ContainerControl |

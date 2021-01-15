@@ -23,7 +23,7 @@ namespace WindowsFormsExpander
     public partial class Expander : Control
     {
         bool expanded = true;
-        int expandedHeight, headerHeight = defaultHeaderHeight;
+        int expandedHeight = defaultExpandedHeight, headerHeight = defaultHeaderHeight;
 
         /// <summary>
         /// Gets or sets a value indicating if this <see cref="Expander"/> is currently
@@ -63,6 +63,7 @@ namespace WindowsFormsExpander
             {
                 if (value == expandedHeight) return;
                 expandedHeight = value;
+                if (Expanded) Height = expandedHeight;
                 OnExpandedHeightChanged(EventArgs.Empty);
             }
         }
@@ -84,6 +85,7 @@ namespace WindowsFormsExpander
                 if (headerHeight == value) return;
                 headerHeight = value;
                 OnHeaderHeightChanged(EventArgs.Empty);
+                Height = Math.Max(Height, headerHeight + Padding.Vertical);
             }
         }
 
@@ -100,6 +102,8 @@ namespace WindowsFormsExpander
 
         void SetExpansionMode()
         {
+            Height = Expanded ? ExpandedHeight : HeaderHeight + Padding.Vertical;
+
             if (expanded)
             {
                 ResumeLayout();
