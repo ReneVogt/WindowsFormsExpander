@@ -11,7 +11,7 @@ using WindowsFormsExpander.Properties;
 
 namespace WindowsFormsExpander
 {
-    partial class Expander : Control
+    partial class Expander
     {
         Rectangle borderRect, headerRect, imageRect, textRect, focusRect;
         ButtonState ButtonState => Enabled

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
 using WindowsFormsExpander.Properties;
 
@@ -7,7 +6,7 @@ using WindowsFormsExpander.Properties;
 
 namespace WindowsFormsExpander
 {
-    partial class Expander : Control
+    partial class Expander
     {
         /// <summary>
         /// Raised when <see cref="Expanded"/> has been changed.
@@ -59,9 +58,7 @@ namespace WindowsFormsExpander
         /// <param name="e"></param>
         protected virtual void OnHeaderHeightChanged(EventArgs e)
         {
-            RefreshRectangles();
             HeaderHeightChanged?.Invoke(this, e);
-            Invalidate();
         }
     }
 }

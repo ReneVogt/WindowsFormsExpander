@@ -4,7 +4,7 @@
 
 namespace WindowsFormsExpander
 {
-    partial class Expander : Control
+    partial class Expander
     {
         const int defaultHeaderHeight = 24;
         const int defaultExpandedHeight = 100;

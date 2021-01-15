@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsExpander
 {
-    partial class Expander : Control
+    partial class Expander
     {
         bool collapseButtonPressed, collapseButtonHovered;
         bool CollapseButtonPressed

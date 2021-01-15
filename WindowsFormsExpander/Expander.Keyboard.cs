@@ -4,7 +4,7 @@
 
 namespace WindowsFormsExpander
 {
-    partial class Expander : Control
+    partial class Expander
     {
         /// <inheritdoc />
         protected override void OnKeyUp(KeyEventArgs e)

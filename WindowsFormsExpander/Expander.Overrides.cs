@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.Layout;
 
 #nullable enable
 
 namespace WindowsFormsExpander
 {
-    partial class Expander : Control
+    partial class Expander
     {
         /// <inheritdoc />
         public override Rectangle DisplayRectangle => Expanded ? new(borderRect.Location, borderRect.Size) : Rectangle.Empty;
@@ -18,7 +19,7 @@ namespace WindowsFormsExpander
         protected override Padding DefaultPadding => new (3);
         /// <inheritdoc />
         protected override Size DefaultSize => new (200, defaultExpandedHeight);
-
+        
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
         {
@@ -32,7 +33,6 @@ namespace WindowsFormsExpander
             RefreshRectangles();
             if (Expanded)
                 ExpandedHeight = Height;
-            ClientSize = Size;
             base.OnSizeChanged(e);
         }
         /// <inheritdoc />
