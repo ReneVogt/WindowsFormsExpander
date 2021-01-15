@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
+// ReSharper disable UnusedMember.Local
 
 #nullable enable
 

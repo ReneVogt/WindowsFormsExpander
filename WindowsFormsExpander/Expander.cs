@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsExpander.LocalizedAttributes;
@@ -24,6 +26,16 @@ namespace WindowsFormsExpander
     {
         bool expanded = true;
         int expandedHeight = defaultExpandedHeight, headerHeight = defaultHeaderHeight;
+
+        Form? ParentForm
+        {
+            get
+            {
+                Control? parent = Parent;
+                while (parent?.Parent is { } p) parent = p;
+                return parent as Form;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating if this <see cref="Expander"/> is currently
@@ -113,7 +125,10 @@ namespace WindowsFormsExpander
                 Focus();
             SuspendLayout();
             Height = HeaderHeight + Padding.Vertical;
-
         }
+
+        [Conditional("DEBUG")]
+        void Log(string? msg = null, [CallerMemberName] string? caller = null) => Debug.WriteLine($"{Name}.{caller}: {msg}");
+        
     }
 }

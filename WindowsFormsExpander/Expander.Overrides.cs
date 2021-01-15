@@ -32,7 +32,17 @@ namespace WindowsFormsExpander
             RefreshRectangles();
             if (Expanded)
                 ExpandedHeight = Height;
+            ClientSize = Size;
             base.OnSizeChanged(e);
+        }
+        /// <inheritdoc />
+        protected override void OnEnter(EventArgs e)
+        {
+            // This prevents child controls form gaining
+            // focus via tab etc while we are collapsed.
+            if (!Expanded) Focus();
+
+            base.OnEnter(e);
         }
         /// <inheritdoc />
         protected override void OnGotFocus(EventArgs e)
@@ -43,13 +53,13 @@ namespace WindowsFormsExpander
         /// <inheritdoc />
         protected override void OnLostFocus(EventArgs e)
         {
+            // Don't let child controls take focus
+            // while we're collapsed.
+            if (!Expanded && ContainsFocus)
+                Parent?.SelectNextControl(this, true, true, false, true);
+
             Invalidate(headerRect);
             base.OnLostFocus(e);
-        }
-        /// <inheritdoc />
-        protected override void SetClientSizeCore(int x, int y)
-        {
-            base.SetClientSizeCore(x, Math.Max(HeaderHeight + Padding.Vertical, y));
         }
     }
 }

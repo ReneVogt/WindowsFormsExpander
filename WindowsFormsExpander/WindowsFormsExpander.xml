@@ -106,13 +106,13 @@
         <member name="M:WindowsFormsExpander.Expander.OnSizeChanged(System.EventArgs)">
             <inheritdoc />
         </member>
+        <member name="M:WindowsFormsExpander.Expander.OnEnter(System.EventArgs)">
+            <inheritdoc />
+        </member>
         <member name="M:WindowsFormsExpander.Expander.OnGotFocus(System.EventArgs)">
             <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.Expander.SetClientSizeCore(System.Int32,System.Int32)">
             <inheritdoc />
         </member>
         <member name="T:WindowsFormsExpander.ExpanderDesigner">

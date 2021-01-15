@@ -1,4 +1,4 @@
-# Windows Forms Expander
+﻿# Windows Forms Expander
 ### An Expander control for Windows Forms.
 
 ---
@@ -14,5 +14,5 @@ In this example you can see two `Expander` controls in a `GroupBox` (with their 
 - [Release notes](/docs/ReleaseNotes.md)
 
 ---
-Ren&eacute; Vogt  
+René Vogt  
 Dresden 2021/01/15
