@@ -1,4 +1,4 @@
-# WindowsFormsExpander
+# Windows Forms Expander
 ### An Expander control for Windows Forms.
 
 ---
