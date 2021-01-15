@@ -32,6 +32,7 @@ namespace ExpanderTestApp
             this.outerSplitter = new System.Windows.Forms.SplitContainer();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.expander = new WindowsFormsExpander.Expander();
+            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).BeginInit();
             this.outerSplitter.Panel1.SuspendLayout();
@@ -68,6 +69,7 @@ namespace ExpanderTestApp
             // 
             // expander
             // 
+            this.expander.Controls.Add(this.label1);
             this.expander.Controls.Add(this.button1);
             this.expander.ExpandedHeight = 227;
             this.expander.Location = new System.Drawing.Point(6, 32);
@@ -76,14 +78,24 @@ namespace ExpanderTestApp
             this.expander.TabIndex = 0;
             this.expander.Text = "Expander";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 40);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(17, 67);
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.Location = new System.Drawing.Point(81, 40);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 112);
+            this.button1.Size = new System.Drawing.Size(93, 112);
             this.button1.TabIndex = 0;
             this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // TestForm
             // 
@@ -100,6 +112,7 @@ namespace ExpanderTestApp
             ((System.ComponentModel.ISupportInitialize)(this.outerSplitter)).EndInit();
             this.outerSplitter.ResumeLayout(false);
             this.expander.ResumeLayout(false);
+            this.expander.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -110,6 +123,7 @@ namespace ExpanderTestApp
         private WindowsFormsExpander.Expander expander;
         private System.Windows.Forms.PropertyGrid propertyGrid;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
