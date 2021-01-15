@@ -1,0 +1,7 @@
+theme: jekyll-theme-minimal
+title: WindowsFormsExpander
+author: Ren&eacute; Vogt
+description: An Expander control for Windows Forms.
+#url: https://renevogt.github.io/WindowsFormsExpander/
+baseurl: 
+markdown: kramdown
