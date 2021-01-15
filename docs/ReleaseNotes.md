@@ -1,4 +1,4 @@
-# WindowsFormsExpander - Release notes
+# Windows Forms Expander - Release notes
 
 ### Version 0.5.0 (2021/02/15)
 

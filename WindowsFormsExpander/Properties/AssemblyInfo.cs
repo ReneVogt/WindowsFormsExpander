@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("WindowsFormsExpander")]
+[assembly: AssemblyTitle("Windows Forms Expander")]
 [assembly: AssemblyDescription("An Expander control for Windows Forms.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("René Vogt")]
-[assembly: AssemblyProduct("WindowsFormsExpander")]
+[assembly: AssemblyProduct("Windows Forms Expander")]
 [assembly: AssemblyCopyright("Copyright ©2021 by René Vogt")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
