@@ -41,7 +41,6 @@ namespace WindowsFormsExpander
         /// <param name="e"></param>
         protected virtual void OnExpandedChanged(EventArgs e)
         {
-            Height = Expanded ? ExpandedHeight : HeaderHeight;
             ExpandedChanged?.Invoke(this, e);
         }
         /// <summary>
@@ -51,8 +50,6 @@ namespace WindowsFormsExpander
         /// <param name="e"></param>
         protected virtual void OnExpandedHeightChanged(EventArgs e)
         {
-            if (Expanded)
-                Height = ExpandedHeight;
             ExpandedHeightChanged?.Invoke(this, e);
         }
         /// <summary>

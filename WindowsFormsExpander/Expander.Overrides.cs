@@ -9,12 +9,15 @@ namespace WindowsFormsExpander
     partial class Expander : Control
     {
         /// <inheritdoc />
-        // ReSharper disable once ConvertToAutoProperty
-        public override Rectangle DisplayRectangle => displayRect;
+        public override Rectangle DisplayRectangle => Expanded ? new(borderRect.Location, borderRect.Size) : Rectangle.Empty;
         /// <inheritdoc />
         protected override bool ShowFocusCues => true;
         /// <inheritdoc />
         protected override bool ShowKeyboardCues => true;
+        /// <inheritdoc />
+        protected override Padding DefaultPadding => new (3);
+        /// <inheritdoc />
+        protected override Size DefaultSize => new (200, defaultExpandedHeight);
 
         /// <inheritdoc />
         protected override void OnPaint(PaintEventArgs e)
@@ -34,26 +37,19 @@ namespace WindowsFormsExpander
         /// <inheritdoc />
         protected override void OnGotFocus(EventArgs e)
         {
-            Invalidate();
+            Invalidate(headerRect);
             base.OnGotFocus(e);
         }
         /// <inheritdoc />
         protected override void OnLostFocus(EventArgs e)
         {
-            Invalidate();
+            Invalidate(headerRect);
             base.OnLostFocus(e);
         }
         /// <inheritdoc />
-        protected override void OnFontChanged(EventArgs e)
+        protected override void SetClientSizeCore(int x, int y)
         {
-            Invalidate();
-            base.OnFontChanged(e);
-        }
-        /// <inheritdoc />
-        protected override void OnRightToLeftChanged(EventArgs e)
-        {
-            Invalidate();
-            base.OnRightToLeftChanged(e);
+            base.SetClientSizeCore(x, Math.Max(HeaderHeight + Padding.Vertical, y));
         }
     }
 }
