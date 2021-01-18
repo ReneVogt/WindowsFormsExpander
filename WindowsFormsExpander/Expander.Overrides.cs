@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.Layout;
 
 #nullable enable
 
@@ -10,7 +9,7 @@ namespace WindowsFormsExpander
     partial class Expander
     {
         /// <inheritdoc />
-        public override Rectangle DisplayRectangle => Expanded ? new(borderRect.Location, borderRect.Size) : Rectangle.Empty;
+        public override Rectangle DisplayRectangle => Expanded ? new(BorderRect.Location, BorderRect.Size) : Rectangle.Empty;
         /// <inheritdoc />
         protected override bool ShowFocusCues => true;
         /// <inheritdoc />
@@ -47,7 +46,7 @@ namespace WindowsFormsExpander
         /// <inheritdoc />
         protected override void OnGotFocus(EventArgs e)
         {
-            Invalidate(headerRect);
+            Invalidate(HeaderRect);
             base.OnGotFocus(e);
         }
         /// <inheritdoc />
@@ -58,7 +57,7 @@ namespace WindowsFormsExpander
             if (!Expanded && ContainsFocus)
                 Parent?.SelectNextControl(this, true, true, false, true);
 
-            Invalidate(headerRect);
+            Invalidate(HeaderRect);
             base.OnLostFocus(e);
         }
     }

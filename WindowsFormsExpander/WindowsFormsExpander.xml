@@ -9,6 +9,12 @@
             A container control that can be collapsed and expanded.
             </summary>
         </member>
+        <member name="M:WindowsFormsExpander.Expander.CreateAccessibilityInstance">
+            <inheritdoc />
+        </member>
+        <member name="M:WindowsFormsExpander.Expander.GetAccessibilityObjectById(System.Int32)">
+            <inheritdoc />
+        </member>
         <member name="P:WindowsFormsExpander.Expander.Expanded">
             <summary>
             Gets or sets a value indicating if this <see cref="T:WindowsFormsExpander.Expander"/> is currently
@@ -115,18 +121,10 @@
         <member name="M:WindowsFormsExpander.Expander.OnLostFocus(System.EventArgs)">
             <inheritdoc />
         </member>
-        <member name="T:WindowsFormsExpander.ExpanderDesigner">
-            <summary>
-            Provides design time support for the <see cref="T:WindowsFormsExpander.Expander"/> control.
-            </summary>
-        </member>
-        <member name="P:WindowsFormsExpander.ExpanderDesigner.DefaultControlLocation">
+        <member name="P:WindowsFormsExpander.Expander.ExpanderDesigner.DefaultControlLocation">
             <inheritdoc />
         </member>
-        <member name="P:WindowsFormsExpander.ExpanderDesigner.SnapLines">
-            <inheritdoc />
-        </member>
-        <member name="M:WindowsFormsExpander.ExpanderDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+        <member name="P:WindowsFormsExpander.Expander.ExpanderDesigner.SnapLines">
             <inheritdoc />
         </member>
         <member name="M:WindowsFormsExpander.LocalizedAttributes.ExpanderCategory.GetLocalizedString(System.String)">

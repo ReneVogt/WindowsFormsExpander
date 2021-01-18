@@ -116,7 +116,7 @@ namespace WindowsFormsExpander
                 Focus();
             SuspendLayout();
             Height = HeaderHeight + Padding.Vertical;
-            Invalidate(headerRect);
+            Invalidate(HeaderRect);
         }
 
         //[Conditional("DEBUG")]

@@ -1,5 +1,13 @@
 # Windows Forms Expander - Release notes
 
+### Version 0.6.0 (2021/02/18)
+
+Accessibility support (not tested, don't know how). Minor fixes and refactorings.
+
+Issues:
+- #5 Accessibility
+- #6 is not easily pssible, dragging is not performed by our designer
+
 ### Version 0.5.0 (2021/02/15)
 
 The first non-preview release. But the leading `0` in the version shows
@@ -31,4 +39,4 @@ This is the first shot, only published for testing purposes.
 
 ---
 Ren&eacute; Vogt  
-Dresden 2021/02/15
+Dresden 2021/02/18

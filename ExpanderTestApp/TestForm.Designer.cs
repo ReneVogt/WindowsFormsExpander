@@ -73,11 +73,10 @@ namespace ExpanderTestApp
             this.expander.Controls.Add(this.button2);
             this.expander.Controls.Add(this.label1);
             this.expander.Controls.Add(this.button1);
-            this.expander.ExpandedHeight = 279;
-            this.expander.HeaderHeight = 50;
-            this.expander.Location = new System.Drawing.Point(37, 32);
+            this.expander.ExpandedHeight = 301;
+            this.expander.Location = new System.Drawing.Point(47, 93);
             this.expander.Name = "expander";
-            this.expander.Size = new System.Drawing.Size(171, 279);
+            this.expander.Size = new System.Drawing.Size(171, 301);
             this.expander.TabIndex = 0;
             this.expander.Text = "Expander";
             // 

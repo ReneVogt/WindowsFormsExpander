@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.Design.Behavior;
 using System.Windows.Forms.VisualStyles;
 using WindowsFormsExpander.Properties;
 
@@ -13,7 +11,11 @@ namespace WindowsFormsExpander
 {
     partial class Expander
     {
-        Rectangle borderRect, headerRect, imageRect, textRect, focusRect;
+        Rectangle BorderRect { get; set; }
+        Rectangle ImageRect { get; set; }
+        Rectangle FocusRect { get; set; }
+        Rectangle HeaderRect { get; set; }
+        Rectangle TextRect { get; set; }
         ButtonState ButtonState => Enabled
                                        ? CollapseButtonPressed
                                              ? ButtonState.Pushed
@@ -27,33 +29,32 @@ namespace WindowsFormsExpander
                                                          : PushButtonState.Normal
                                                : PushButtonState.Disabled;
         Image ButtonImage => Expanded ? Resources.collapseImage : Resources.expandImage;
-
         
         void RefreshRectangles()
         {
-            borderRect = new(
+            BorderRect = new(
 
                 x: Padding.Left,
                 y: Padding.Top + HeaderHeight,
                 width: Math.Max(0, Width - Padding.Horizontal),
                 height: Math.Max(0, ExpandedHeight - Padding.Vertical - HeaderHeight)
             );
-            headerRect = new(
+            HeaderRect = new(
                 x: Padding.Left,
                 y: Padding.Top,
                 width: Math.Max(0, Width - Padding.Horizontal),
                 height: HeaderHeight);
             var paddedHeaderRect = new Rectangle(
-                x: headerRect.Left + headerPadding,
+                x: HeaderRect.Left + headerPadding,
                 y: Padding.Top + headerPadding,
-                width: headerRect.Width - 2 * headerPadding,
-                height: headerRect.Height - 2 * headerPadding);
-            imageRect = new(
+                width: HeaderRect.Width - 2 * headerPadding,
+                height: HeaderRect.Height - 2 * headerPadding);
+            ImageRect = new(
                 x: Math.Max(paddedHeaderRect.Left, paddedHeaderRect.Right - imageSize),
                 y: paddedHeaderRect.Top + Math.Max(0, paddedHeaderRect.Height - imageSize) / 2,
                 width: Math.Min(imageSize, paddedHeaderRect.Width), 
                 height: Math.Min(imageSize, paddedHeaderRect.Height));
-            textRect = new(
+            TextRect = new(
                 x: paddedHeaderRect.Left,
                 y: paddedHeaderRect.Top, 
                 width: paddedHeaderRect.Width,
@@ -64,24 +65,24 @@ namespace WindowsFormsExpander
                 using var graphics = Graphics.FromHwnd(Handle);
                 using var format = GetStringFormat();
 
-                var textSize = Size.Ceiling(graphics.MeasureString(Text, Font, textRect.Size, format));
+                var textSize = Size.Ceiling(graphics.MeasureString(Text, Font, TextRect.Size, format));
 
-                textRect = new (
-                    textRect.Left,
-                    Math.Min(headerRect.Bottom - headerPadding, textRect.Top + Math.Max(0, textRect.Height - textSize.Height) / 2),
-                    Math.Min(headerRect.Width - 2 * headerPadding, textSize.Width),
-                    Math.Min(headerRect.Height - 2 * headerPadding, textSize.Height));
+                TextRect = new (
+                    TextRect.Left,
+                    Math.Min(HeaderRect.Bottom - headerPadding, TextRect.Top + Math.Max(0, TextRect.Height - textSize.Height) / 2),
+                    Math.Min(HeaderRect.Width - 2 * headerPadding, textSize.Width),
+                    Math.Min(HeaderRect.Height - 2 * headerPadding, textSize.Height));
             }
 
-            focusRect = new(
-                x: headerRect.Left + focusPadding, 
-                y: headerRect.Top + focusPadding, 
-                width: Math.Max(0, headerRect.Width - 2 * focusPadding),
-                height: Math.Max(0, headerRect.Height - 2 * focusPadding));
+            FocusRect = new(
+                x: HeaderRect.Left + focusPadding, 
+                y: HeaderRect.Top + focusPadding, 
+                width: Math.Max(0, HeaderRect.Width - 2 * focusPadding),
+                height: Math.Max(0, HeaderRect.Height - 2 * focusPadding));
         }
         void DrawHeader(PaintEventArgs e)
         {
-            if (!e.ClipRectangle.IntersectsWith(headerRect)) return;
+            if (!e.ClipRectangle.IntersectsWith(HeaderRect)) return;
 
             if (Application.RenderWithVisualStyles)
                 DrawButtonWithVisualStyles(e);
@@ -103,39 +104,39 @@ namespace WindowsFormsExpander
 
             ButtonRenderer.DrawButton(
                 e.Graphics,
-                headerRect,
+                HeaderRect,
                 Text,
                 Font,
                 textFormatFlags,
                 ButtonImage,
-                imageRect,
+                ImageRect,
                 Focused && ShowFocusCues,
                 PushButtonState);
         }
         void DrawButtonWithoutVisualStyles(PaintEventArgs e)
         {
-            ControlPaint.DrawButton(e.Graphics, headerRect, ButtonState);
+            ControlPaint.DrawButton(e.Graphics, HeaderRect, ButtonState);
 
             if (Enabled)
             {
                 using var textBrush = new SolidBrush(ForeColor);
-                e.Graphics.DrawString(Text, Font, textBrush, textRect);
-                e.Graphics.DrawImageUnscaledAndClipped(ButtonImage, imageRect);
+                e.Graphics.DrawString(Text, Font, textBrush, TextRect);
+                e.Graphics.DrawImageUnscaledAndClipped(ButtonImage, ImageRect);
             }
             else
             {
                 using var format = GetStringFormat();
-                ControlPaint.DrawStringDisabled(e.Graphics, Text, Font, BackColor, textRect, format);
-                ControlPaint.DrawImageDisabled(e.Graphics, ButtonImage, imageRect.Left, imageRect.Top, BackColor);
+                ControlPaint.DrawStringDisabled(e.Graphics, Text, Font, BackColor, TextRect, format);
+                ControlPaint.DrawImageDisabled(e.Graphics, ButtonImage, ImageRect.Left, ImageRect.Top, BackColor);
             }
 
             if (Focused && ShowFocusCues)
-                ControlPaint.DrawFocusRectangle(e.Graphics, focusRect);
+                ControlPaint.DrawFocusRectangle(e.Graphics, FocusRect);
         }
         void DrawContent(PaintEventArgs e)
         {
-            if (Expanded && e.ClipRectangle.IntersectsWith(borderRect))
-                ControlPaint.DrawBorder(e.Graphics, borderRect, SystemColors.ActiveBorder, ButtonBorderStyle.Solid);
+            if (Expanded && e.ClipRectangle.IntersectsWith(BorderRect))
+                ControlPaint.DrawBorder(e.Graphics, BorderRect, SystemColors.ActiveBorder, ButtonBorderStyle.Solid);
         }
         StringFormat GetStringFormat()
         {
@@ -148,20 +149,5 @@ namespace WindowsFormsExpander
             
             return format;
         }
-        internal List<SnapLine> SnapLines => new()
-        {
-            new(SnapLineType.Left, 0, SnapLinePriority.High),
-            new(SnapLineType.Left, Margin.Left, SnapLinePriority.High),
-            new(SnapLineType.Top, 0, SnapLinePriority.High),
-            new(SnapLineType.Top, Margin.Top, SnapLinePriority.High),
-            new(SnapLineType.Right, Width, SnapLinePriority.High),
-            new(SnapLineType.Right, Width - Margin.Right, SnapLinePriority.High),
-            new(SnapLineType.Bottom, Height, SnapLinePriority.High),
-            new(SnapLineType.Bottom, Height - Margin.Bottom, SnapLinePriority.High),
-            new(SnapLineType.Baseline, textRect.Bottom, SnapLinePriority.High),
-            new(SnapLineType.Top, headerRect.Height, SnapLinePriority.High),
-            new(SnapLineType.Baseline, headerRect.Height, SnapLinePriority.High),
-            new(SnapLineType.Horizontal, headerRect.Height, SnapLinePriority.High)
-        };
     }
 }

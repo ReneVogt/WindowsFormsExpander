@@ -15,7 +15,7 @@ namespace WindowsFormsExpander
             {
                 if (collapseButtonPressed == value) return;
                 collapseButtonPressed = value;
-                Invalidate(headerRect);
+                Invalidate(HeaderRect);
             }
         }
         bool CollapseButtonHovered
@@ -25,7 +25,7 @@ namespace WindowsFormsExpander
             {
                 if (collapseButtonHovered == value) return;
                 collapseButtonHovered = value;
-                Invalidate(headerRect);
+                Invalidate(HeaderRect);
             }
         }
 
@@ -39,10 +39,10 @@ namespace WindowsFormsExpander
         protected override void OnMouseDown(MouseEventArgs e)
         {
             Focus();
-            if (e.Button == MouseButtons.Left && headerRect.Contains(e.Location) && !CollapseButtonPressed)
+            if (e.Button == MouseButtons.Left && HeaderRect.Contains(e.Location) && !CollapseButtonPressed)
             {
                 CollapseButtonPressed = true;
-                Invalidate(headerRect);
+                Invalidate(HeaderRect);
             }
 
             base.OnMouseDown(e);
@@ -50,7 +50,7 @@ namespace WindowsFormsExpander
         /// <inheritdoc />
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (headerRect.Contains(e.Location))
+            if (HeaderRect.Contains(e.Location))
                 CollapseButtonHovered = true;
             else
                 CollapseButtonHovered = CollapseButtonPressed = false;
@@ -61,13 +61,13 @@ namespace WindowsFormsExpander
         protected override void OnMouseUp(MouseEventArgs e)
         {
             CollapseButtonPressed = false;
-            Invalidate(headerRect);
+            Invalidate(HeaderRect);
             base.OnMouseUp(e);
         }
         /// <inheritdoc />
         protected override void OnMouseClick(MouseEventArgs e)
         {
-            if (headerRect.Contains(e.Location) && e.Button == MouseButtons.Left)
+            if (HeaderRect.Contains(e.Location) && e.Button == MouseButtons.Left)
             {
                 Expanded = !Expanded;
                 if (e is HandledMouseEventArgs he)
